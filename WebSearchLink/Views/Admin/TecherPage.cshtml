@@ -1,0 +1,40 @@
+﻿@model List<Teacher>
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">unconfirmed teachers</h6>
+            <a href="">Show All</a>
+        </div>
+        <div id="teacher-table-containner" style="max-height: 500px; overflow-y: auto;">
+            <table class="table table-bordered">
+                <thead class="table-light sticky-header">
+                    <tr>
+                        <th>Teacher ID</th>
+                        <th>Full Name</th>
+                        <th>User Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                        <td>
+                            @Html.Raw(item.authenticate.GetValueOrDefault() == false
+                                                        ? "<i class='fas fa-times-circle text-danger' title='Chưa xác nhận'></i>"
+                                                        : "<i class='fas fa-check-circle text-success' title='Đã xác nhận'></i>")
+                            @item.FullName
+                        </td>
+                            <td>@item.FullName</td>
+                            <td>@item.Email</td>
+                            <td style="display: flex;">
+                             
+                                @await Component.InvokeAsync("ConfirmTeacher", new { teacherId = item.TeacherId })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,9 @@
+﻿@model List<Teacher>
+<select class="form-select" id="floatingSelectTeacher"
+        aria-label="Select a different teacher">
+    <option selected>Open this select menu</option>
+    @foreach (var item in Model)
+    {
+        <option value="@item.TeacherId">Teacher: @item.FullName</option>
+    }
+</select>

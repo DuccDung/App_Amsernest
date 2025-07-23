@@ -1,0 +1,34 @@
+﻿@model int
+<div class="bg-white shadow-lg rounded-xl p-8 w-full max-w-xl">
+    <h2 class="text-2xl font-bold text-blue-700 mb-6">🎯 Amsernest – Thiết lập lịch hẹn</h2>
+
+    <div class="space-y-4">
+        <div>
+            <label class="block text-gray-700 font-semibold mb-1">📅 Chọn ngày:</label>
+            <input type="date" id="adminSetDate" class="w-full border px-3 py-2 rounded shadow-sm">
+        </div>
+
+        <div class="flex ">
+            <div class="mr-4">
+                <label class="block text-gray-700 font-semibold mb-1">⏰ Chọn giờ bắt đầu:</label>
+                <input type="time" id="adminSetTimeStart" class="w-full border px-3 py-2 rounded shadow-sm">
+            </div>
+            <div>
+                <label class="block text-gray-700 font-semibold mb-1">⏰ Chọn giờ kết thúc:</label>
+                <input type="time" id="adminSetTimeEnd" class="w-full border px-3 py-2 rounded shadow-sm">
+            </div>
+        </div>
+
+        <button onclick="addSlot()" type="button" id="btn_add_slot_time" class="w-full bg-blue-600 text-white py-2 rounded font-semibold hover:bg-blue-700 transition">
+            ➕ Thêm Slot
+        </button>
+    </div>
+
+    <hr class="my-6">
+    <h3 class="text-lg font-semibold mb-2">📋 Danh sách Slot đã tạo:</h3>
+    <ul id="adminSlotList" class="space-y-2 max-h-60 overflow-y-auto">
+        @await Component.InvokeAsync("TimeSlot_WTM", new { wtmId = Model })
+    </ul>
+</div>
+<script src="~/lib/jquery/dist/jquery.js" asp-append-version="true"></script>
+<script src="~/asset/js/whentomeet/AdminSetTime.js" asp-append-version="true"></script>

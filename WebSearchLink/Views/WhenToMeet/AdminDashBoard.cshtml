@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard – WhenToMeet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h4 text-primary fw-bold mb-0">📅 Quản lý Lịch hẹn</h1>
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#createModal">
+                + Tạo lịch mới
+            </button>
+        </div>
+
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="table-light text-secondary">
+                            <tr>
+                                <th>#</th>
+                                <th>📌 Tiêu đề</th>
+                                <th>👤 Người tạo</th>
+                                <th>📆 Ngày tạo</th>
+                                <th>⏱️ Slot thời gian</th>
+                                <th>👥 Người tham gia</th>
+                                <th>⚙️ Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @await Component.InvokeAsync("TableWhenToMeet")
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Tạo lịch hẹn -->
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow-sm">
+                <form id="form-create-wtm">
+                    <div class="modal-body">
+                        <div class="form-floating mb-3">
+                            <input type="text" class="form-control" id="title-add-wtm" name="Title" placeholder="Tiêu đề" required>
+                            <label for="title-add-wtm">📌 Tiêu đề</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <textarea class="form-control" id="description-add-wtm" name="Description" placeholder="Mô tả..." style="height: 100px"></textarea>
+                            <label for="description-add-wtm">📝 Mô tả</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="datetime-local" class="form-control" id="createdAt-add-wtm" name="CreatedAt" required>
+                            <label for="createdAt-add-wtm">📅 Ngày tạo</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-0">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary">💾 Tiếp theo</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Thiết lập Slot thời gian -->
+    <div class="modal fade" id="slotModal" tabindex="-1" aria-labelledby="slotModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow-sm">
+                <div class="modal-header bg-light border-0">
+                    <h5 class="modal-title fw-bold text-primary" id="slotModalLabel">⏱️ Thiết lập Slot thời gian</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="adminSetDate" class="form-label fw-semibold">📅 Chọn ngày:</label>
+                        <input type="date" id="adminSetDate" class="form-control">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="adminSetTimeStart" class="form-label fw-semibold">⏰ Giờ bắt đầu:</label>
+                            <input type="time" id="adminSetTimeStart" class="form-control">
+                        </div>
+                        <div class="col">
+                            <label for="adminSetTimeEnd" class="form-label fw-semibold">⏰ Giờ kết thúc:</label>
+                            <input type="time" id="adminSetTimeEnd" class="form-control">
+                        </div>
+                    </div>
+                    <div class="d-grid mb-4">
+                        <button onclick="addSlot()" type="button" id="btn_add_slot_time" class="btn btn-primary fw-semibold">
+                            ➕ Thêm Slot
+                        </button>
+                    </div>
+                    <h5 class="fw-semibold mb-2">📋 Danh sách Slot đã tạo:</h5>
+                    <ul id="adminSlotList" class="list-group" style="max-height: 250px; overflow-y: auto;"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    <!-- Modal nhận nội dung động -->
+    <div class="modal fade" id="dynamicContentModal" tabindex="-1" aria-labelledby="dynamicModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content rounded-4 shadow-sm">
+                <div class="modal-header bg-light border-0">
+                    <h5 class="modal-title fw-bold text-primary" id="dynamicModalLabel">📄 Chi tiết nội dung</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+                </div>
+                <div class="modal-body" id="dynamicContentBody">
+                    <!-- Nội dung PartialView hoặc HTML sẽ được AJAX đẩy vào đây -->
+                    <div class="text-muted text-center">⏳ Đang tải nội dung...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/asset/js/whentomeet/AdminAddWTM.js"></script>
+</body>
+</html>

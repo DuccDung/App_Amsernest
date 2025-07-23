@@ -1,0 +1,57 @@
+﻿<style>
+    .sticky-header-dashboard th {
+        position: sticky;
+        top: -3px;
+        padding-top: 10px;
+        background-color: #f8f9fa;
+        z-index: 10;
+    }
+</style>
+@model List<Teacher>
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="headerTable-time">
+                <h6 style="margin-right: 10px" class="mb-0">Teacher's lessons during the day</h6>
+                <div class="date-range">
+                    <select id="seclectTeacherIdInSearch" class="form-select form-select-sm mb-3" aria-label=".form-select-sm example">
+                        <option selected>Open this select Teacher</option>
+                        @foreach (var item in Model)
+                        {
+                        <option value="@item.TeacherId">
+                            @Html.Raw(item.authenticate.GetValueOrDefault() == false
+                                                        ? "<i class='fas fa-times-circle text-danger' title='Chưa xác nhận'></i>"
+                                                        : "<i class='fas fa-check-circle text-success' title='Đã xác nhận'></i>")
+                            @item.FullName
+                        </option>
+                                                }
+                    </select>
+                    <label for="from">từ</label>
+                    <input type="date" id="from-in-meetingtoday" name="from" value="">
+
+                    <label for="to">tới</label>
+                    <input type="date" id="to-in-meetingtoday" name="to" value="">
+                </div>
+                <button style="margin:10px" id="btnSearch-report-by-teacher" type="button" class="btn btn-outline-primary m-2">Search</button>
+            </div>
+        </div>
+        <div id="dashBoard__table-report-today" style="max-height: 500px; overflow-y: auto;">
+            <table class="table table-bordered">
+                <thead class="table-light sticky-header-dashboard">
+                    <tr>
+                        <th>Teacher name</th>
+                        <th>Type</th>
+                        <th>Meeting id</th>
+                        <th>Topic</th>
+                        <th>Creation time</th>
+                        <th>Time (Minutes)</th>
+                        <th>Link recordings</th>
+                        <th>Link download</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+

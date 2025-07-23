@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Server-ToolDow&UpVideo\\Server-ToolDow&UpVideo.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "WebSearchLink\\WebSearchLink.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

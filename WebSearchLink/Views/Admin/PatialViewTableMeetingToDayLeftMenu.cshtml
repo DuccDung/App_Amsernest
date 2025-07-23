@@ -1,0 +1,93 @@
+﻿@model List<TeacherWithReportsViewModel>
+
+<table class="table table-bordered">
+    <thead class="table-light sticky-header-dashboard">
+        <tr>
+            <th>Teacher name</th>
+            <th>Type</th>
+            <th>Meeting id</th>
+            <th>Topic</th>
+            <th>Creation time</th>
+            <th>Time (Minutes)</th>
+            <th>Link YT</th>
+            <th>Link DL</th>
+            <th>Evaluate</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int count = 0;
+        }
+        @foreach (var item in Model)
+        {
+            foreach (var report in item.Reports)
+            {
+        <tr>
+            <td>
+                @Html.Raw(item.Teacher.authenticate.GetValueOrDefault() == false
+                                ? "<i class='fas fa-times-circle text-danger' title='Chưa xác nhận'></i>"
+                                : "<i class='fas fa-check-circle text-success' title='Đã xác nhận'></i>")
+                @item.Teacher.FullName
+            </td>
+            <td>
+                @if (report.TypeTeacher == 1)
+                        {
+                            <span style="color: green;">AC</span>
+                        }
+                        else if (report.TypeTeacher == 2)
+                        {
+                            <span style="color: purple;">Coach</span>
+                        }
+                        else
+                        {
+                            <span style="color: red;">Khác</span>
+                        }
+                    </td>
+                    <td>@report.Id</td>
+                    <td class="truncate" title="@report.Topic">@report.Topic</td>
+                    <td>@report.StartTime</td>
+                    <td>@report.Duration</td>
+
+                    <td>@await Component.InvokeAsync("Link", new { uuId = report.Uuid })</td>
+                    <td>@await Component.InvokeAsync("LinkDownload", new { uuId = report.Uuid })</td>
+
+                    <td>
+                        @if (string.IsNullOrEmpty(@report.Feedback))
+                        {
+                            <img src="~/asset/img/feedback.png" alt="Email Icon" width="20" height="20">
+                        }
+                        else
+                        {
+                            <div class="truncate" title="@report.Feedback">
+                                @report.Feedback
+                            </div>
+                        }
+                    </td>
+
+                    <td style="display: flex;">
+                        <a class="btn btn-detail-report btn-sm btn-primary w-100" data-meeting-id="@report.Uuid">Detail</a>
+                        @await Component.InvokeAsync("CheckCondition", new { uuId = report.Uuid })
+                        <a style="margin-left:5px;" class="btn btn-remove-report-teacher btn-sm btn-danger w-100" data-meeting-id="@report.Uuid">Delete</a>
+                    </td>
+                </tr>
+                count++;
+            }
+        }
+    </tbody>
+</table>
+<div class="text-center mt-3">
+    @{
+        var teacherId = ViewBag.teacherId as int? ?? 0;
+    }
+    <span>Total meetings: @count</span>
+    @if (teacherId > 0)
+    {
+        @await Component.InvokeAsync("TotalRemoveMeeting", new { teacherId = teacherId })
+    }
+</div>
+<div class="text-center mt-3">
+    <a id="export-excel-report" class="btn btn-success mb-3">
+        📥 Xuất Excel
+    </a>
+</div>

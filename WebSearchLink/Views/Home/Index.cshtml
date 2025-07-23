@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Amsernest</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="Quantum Able Bootstrap 4 Admin Dashboard Template by codedthemes">
+    <meta name="keywords"
+          content="appestia, Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
+    <meta name="author" content="codedthemes">
+
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,500,700" rel="stylesheet">
+
+
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/icofont/css/icofont.css" asp-append-version="true">
+
+    <link rel="stylesheet" type="text/css" href="~/assets/icon/simple-line-icons/css/simple-line-icons.css" asp-append-version="true">
+
+    <link rel="stylesheet" type="text/css" href="~/assets/plugins/bootstrap/css/bootstrap.min.css" asp-append-version="true">
+
+    <link rel="stylesheet" type="text/css" href="~/assets/css/responsive.css" asp-append-version="true">
+</head>
+@model List<RecordingDto>
+<body class="sidebar-mini fixed">
+    <div class="wrapper">
+        <div class="">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-sm-12 p-0">
+                        <div class="main-header">
+                            <h4>Nhập tên giáo viên hoặc ngày học</h4>
+                            <ol class="breadcrumb breadcrumb-title breadcrumb-arrow">
+                            </ol>
+                            <form asp-controller="Home" asp-action="SearchLink" method="post" class="form-group">
+                                <div>
+                                    <label for="start-date">Ngày học:</label>
+                                    <input type="date" id="start-date" name="date">
+                                </div>
+                                <div>
+                                    <label for="start-date">Tên giáo viên:</label>
+                                    <input type="text" id="start-date" name="value">
+                                </div>
+                                <button type="submit" class="btn btn-primary mt-2">Tìm kiếm</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-header-text">Bảng link buổi học</h5>
+                            </div>
+                            <div class="card-block">
+                                <div class="row">
+                                   
+                                        <div class="col-sm-12 table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Topic</th>
+                                                        <th>Start Time</th>
+                                                        <th>Youtube Link</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach (var item in Model)
+                                                {
+                                                    <tr>
+                                                        <td>@item.MeetingTopic</td>
+                                                        <td>@item.StartTime</td>
+                                                        <td><a href="@item.YoutubeLink">@item.YoutubeLink</a></td>
+                                                    </tr>
+                                                }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

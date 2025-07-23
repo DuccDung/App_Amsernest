@@ -1,0 +1,19 @@
+﻿@model ZoomMeetingReport
+<style>
+    .hide {
+        display: none;
+    }
+</style>
+<div id="overlay-confirm" style="display:block; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999;"></div>
+
+<div id="confirm-modal" style="display:block; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+    background:white; padding:30px; border-radius:12px; z-index:10000; text-align:center;">
+    <h4>Are you sure you want to delete this meeting?</h4>
+    <h5><i class="fas fa-user-graduate"></i> Meeting Name: @Model?.Topic</h5>
+    <input type="text" id="report-id-val-remove" name="name" hidden value="@Model?.Uuid" />
+      <div>
+        <label for="feedback">Đánh giá buổi học:</label><br>
+        <textarea id="feedback-report" name="feedback" rows="6" cols="60" placeholder="Nhập đánh giá..."></textarea>
+    </div>
+    <button id="remove-submit-meeting" class="btn remove-submit-meeting btn-danger mt-3">Delete</button>
+</div>

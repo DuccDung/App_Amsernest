@@ -1,0 +1,183 @@
+﻿@{
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+<style>
+    .dropdown-color {
+        background-color: aquamarine;
+    }
+
+    .dropdown-color-month {
+        background-color: rgb(85, 220, 97);
+    }
+
+    .date-range {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        border-bottom: 2px solid #1976d2;
+        padding-bottom: 4px;
+        width: fit-content;
+    }
+
+        .date-range label {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .date-range input[type="date"] {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 4px 8px;
+            font-size: 14px;
+        }
+
+    .headerTable-time{
+        display: flex;
+        align-content: center;
+    }
+</style>
+<div id="content-layout-dashboard">
+    <div class="container-fluid pt-4 px-4">
+        <div class="bg-light text-center rounded p-4">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <div class="headerTable-time">
+                    <h6 style="margin-right: 10px" class="mb-0">Today's meetings</h6>
+                    <div class="date-range">
+                        <label for="from">từ</label>
+                        <input type="date" id="from" name="from" value="2025-06-18">
+
+                        <label for="to">tới</label>
+                        <input type="date" id="to" name="to" value="2025-06-19">
+                    </div>
+                    <button style="margin:10px" id="btnSearch-report" class="btn btn-sm btn-primary w-100">Search</button>
+                </div>
+                <a href="">Show All</a>
+            </div>
+            @await Component.InvokeAsync("TableReportToDay")
+        </div>
+    </div>
+
+    <div class="container-fluid pt-4 px-4">
+        <div class="row g-4">
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                <div class="h-100 bg-light rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <h6 class="mb-0">Recordings posted</h6>
+                        <a href="">Show All</a>
+                    </div>
+                    <div class="d-flex align-items-center border-bottom py-3">
+                        <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-0">Jhon Doe</h6>
+                                <small>15 minutes ago</small>
+                            </div>
+                            <span>Short message goes here...</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center border-bottom py-3">
+                        <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-0">Jhon Doe</h6>
+                                <small>15 minutes ago</small>
+                            </div>
+                            <span>Short message goes here...</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center border-bottom py-3">
+                        <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-0">Jhon Doe</h6>
+                                <small>15 minutes ago</small>
+                            </div>
+                            <span>Short message goes here...</span>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center pt-3">
+                        <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-0">Jhon Doe</h6>
+                                <small>15 minutes ago</small>
+                            </div>
+                            <span>Short message goes here...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                <div class="h-100 bg-light rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0">Calender</h6>
+                        <a href="">Show All</a>
+                    </div>
+                    <div id="calender"></div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                <div class="h-100 bg-light rounded p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h6 class="mb-0 text-danger">unchecked list</h6>
+                        <a href="">Show All</a>
+                    </div>
+                    <div class="d-flex mb-2">
+                        <input class="form-control bg-transparent" type="text" placeholder="Enter task">
+                        <button type="button" class="btn btn-primary ms-2">Add</button>
+                    </div>
+                    <div class="d-flex align-items-center border-bottom py-2">
+                        <input class="form-check-input m-0" type="checkbox">
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <span>Short task goes here...</span>
+                                <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center border-bottom py-2">
+                        <input class="form-check-input m-0" type="checkbox">
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <span>Short task goes here...</span>
+                                <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center border-bottom py-2">
+                        <input class="form-check-input m-0" type="checkbox" checked>
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <span><del>Short task goes here...</del></span>
+                                <button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center border-bottom py-2">
+                        <input class="form-check-input m-0" type="checkbox">
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <span>Short task goes here...</span>
+                                <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center pt-2">
+                        <input class="form-check-input m-0" type="checkbox">
+                        <div class="w-100 ms-3">
+                            <div class="d-flex w-100 align-items-center justify-content-between">
+                                <span>Short task goes here...</span>
+                                <button class="btn btn-sm"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+

@@ -1,0 +1,38 @@
+﻿@model ZoomMeetingReport
+<div id="overlay-confirm" style="display:block; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999;"></div>
+<div style="display:block; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+    background:white; padding:30px; border-radius:12px; z-index:10000; text-align:center; margin: 10px;" class="col-sm-12 col-xl-6">
+    <div class="bg-light rounded h-100 p-4">
+        <h6 class="mb-4">Meeting Details</h6>
+
+        <div class="form-floating mb-3">
+            <span for="floatingInput">Topic: @Model.Topic</span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <span for="floatingInput">Meeting ID: @Model.Uuid</span>
+        </div>
+
+        <div class="form-floating mb-3">
+            <span for="floatingInput">Teacher Name : @Model?.Teacher?.FullName </span>
+        </div>
+        <input type="text" id="detail-meeting-id" hidden value="@Model.Uuid" />
+        <div class="form-floating mb-3">
+            @await Component.InvokeAsync("Teacher")
+            <label for="floatingSelectTeacher">Select New Teacher</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <select class="form-select" id="floatingSelectType"
+                    aria-label="Select session type">
+                <option selected>Select session type</option>
+                <option value="1">AC</option>
+                <option value="2">Coach</option>
+                <option value="3">Other</option>
+            </select>
+            <label for="floatingSelectType">Change Session Type</label>
+        </div>
+       
+        <button type="button" id="btn-detail-send" class="btn btn-outline-success m-2">Success</button>
+    </div>
+</div>

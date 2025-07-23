@@ -1,0 +1,12 @@
+*.mp4
+obj/
+bin/
+.vs/
+appsettings.json
+*.env
+Tokens/
+appsettings.json
+*.env
+Tokens/
+obj/
+bin/

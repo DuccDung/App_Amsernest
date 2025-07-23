@@ -1,0 +1,98 @@
+﻿<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When To Meet</title>
+    <link href="~/asset/css/whentomeet.css" rel="stylesheet" asp-append-version="true"/>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+
+</head>
+
+<body>
+    <div id="container" class="container">
+        <!-- FORM SECTION -->
+        <div class="row">
+            <!-- SIGN UP -->
+            <div class="col align-items-center flex-col sign-up">
+                <div class="form-wrapper align-items-center">
+                    <form id="signUpForm" class="form sign-up" onsubmit="return validateSignUp(event)">
+                        <div class="input-group">
+                            <i class='bx bxs-user'></i>
+                            <input type="text" placeholder="Username" id="signUpUsernameWTM" required minlength="3">
+                        </div>
+                        <div class="input-group"> 
+                            <i class='bx bx-mail-send'></i>
+                            <input type="email" placeholder="Email" id="signUpEmailWTM" required>
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-lock-alt'></i>
+                            <input type="password" placeholder="Password" id="signUpPasswordWTM" required minlength="6">
+                        </div>
+                        <div class="input-group">
+                            <i class='bx bxs-lock-alt'></i>
+                            <input type="password" placeholder="Confirm password" id="signUpConfirmWTM" required>
+                        </div>
+                        <button type="button" id="sign-up-wtm">Sign up</button>
+                        <p><span>Already have an account?</span> <b onclick="toggle()" class="pointer">Sign in here</b></p>
+                    </form>
+                </div>
+            </div>
+            <!-- END SIGN UP -->
+            <!-- SIGN IN -->
+            <div class="col align-items-center flex-col sign-in">
+                <div class="form-wrapper align-items-center">
+                    <div class="form-wrapper align-items-center">
+                        <form id="signInForm" class="form sign-in" onsubmit="return validateSignIn(event)">
+                            <div class="input-group">
+                                <i class='bx bxs-user'></i>
+                                <input type="text" placeholder="Email" id="signInEmailWTM" required>
+                            </div>
+                            <div class="input-group">
+                                <i class='bx bxs-lock-alt'></i>
+                                <input type="password" placeholder="Password" id="signInPasswordWTM" required>
+                            </div>
+                            <button type="button" id="sign-in-wtm">Đăng Nhập</button>
+                            <p><b>Quên Mật Khẩu?</b></p>
+                            <p>
+                                <span>Tạo Tài Khoản Để Tạo Đặt Lịch?</span> <b onclick="toggle()" class="pointer">
+                                    Đăng
+                                    Kí
+                                </b>
+                            </p>
+                        </form>
+                    </div>
+                </div>
+                <div class="form-wrapper">
+                </div>
+            </div>
+            <!-- END SIGN IN -->
+        </div>
+        <div class="row content-row">
+            <div class="col align-items-center flex-col">
+                <div class="text sign-in">
+                    <h2>
+                        Đăng Nhập Tài Khoản
+                    </h2>
+
+                </div>
+                <div class="img sign-in">
+                </div>
+            </div>
+            <div class="col align-items-center flex-col">
+                <div class="img sign-up">
+                </div>
+                <div class="text sign-up">
+                    <h2>
+                        Join with us
+                    </h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/asset/js/whentomeet/auth.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

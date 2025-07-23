@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/asset_userlogin/css/base.css">
+    <link rel="stylesheet" href="~/asset_userlogin/css/home.css">
+    <link rel="stylesheet" href="~/asset_userlogin/css/responsive.css">
+    <link rel="stylesheet" type="text/css" href="btl.css">
+    <link rel="stylesheet" href="~/asset_userlogin/css/error.css">
+    <title>Kính chào quý khách</title>
+</head>
+<body>
+    <div class="container header-icon">
+        <div class="text-center">
+            <img class="logo" src="~/asset/img/amsernest.jpg" alt="">
+            <div class="dba__name text-center">Nestmeet. Xin kính chào các bạn</div>
+        </div>
+        <div class="text-tt text-center">Mời bạn nhập tên để tham gia chọn lịch</div>
+
+        <div class="text-center">
+            <input maxlength="18" placeholder="Tên của bạn" id="userName" type="text" class="inputName">
+            <button id="startButton" class="buy__item outline" style="background-color: #0d6efd; height: 44px;">
+                Bắt đầu
+            </button>
+        </div>
+    </div>
+
+    <div class="overlay-spinner" style="display:none;">
+        <div class="spinner"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="~/asset/js/whentomeet/UserLogin.js" asp-append-version="true"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿<style>
+    .sticky-header-dashboard th {
+        position: sticky;
+        top: -3px;
+        padding-top: 10px;
+        background-color: #f8f9fa; /* Bootstrap table-light */
+        z-index: 10;
+    }
+</style>
+@model List<TeacherWithReportsViewModel>
+<div id="dashBoard__table-report" style="max-height: 500px; overflow-y: auto;">
+    <table class="table table-bordered">
+        <thead class="table-light sticky-header-dashboard">
+            <tr>
+                <th>Teacher name</th>
+                <th>Type</th>
+                <th>Meeting id</th>
+                <th>Topic</th>
+                <th>Creation time</th>
+                <th>Time (Minutes)</th>
+                <th>Link recordings</th>
+                <th>Link download</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                foreach (var report in item.Reports)
+                {
+                    <tr>
+                <td>
+                    @Html.Raw(item.Teacher.authenticate.GetValueOrDefault() == false
+                                        ? "<i class='fas fa-times-circle text-danger' title='Chưa xác nhận'></i>"
+                                        : "<i class='fas fa-check-circle text-success' title='Đã xác nhận'></i>")
+                    @item.Teacher.FullName
+                </td>
+                        <td>
+                            @if (report.TypeTeacher == 1)
+                                    {
+                                        <span style="color: green;">AC</span>
+                                    }
+                                    else if (report.TypeTeacher == 2)
+                                    {
+                                        <span style="color: purple;">Coach</span>
+                                    }
+                                    else
+                                    {
+                                        <span style="color: red;">Khác</span>
+                                    }
+                        </td>
+                        <td>@report.Id</td>
+                        <td class="truncate" title="@report.Topic">@report.Topic</td>
+                        <td>@report.StartTime</td>
+                        <td>@report.Duration</td>
+                        <td>@await Component.InvokeAsync("Link", new { uuId = report.Uuid })</td>
+                        <td>@await Component.InvokeAsync("LinkDownload", new { uuId = report.Uuid })</td>
+                        <td style="display: flex;">
+                            <a class="btn btn-detail-report btn-sm btn-primary w-100" data-meeting-id="@report.Uuid">Detail</a>
+                            <a style="margin-left:5px;" data-meeting-id="@report.Uuid" class="btn btn-confirm-report btn-sm btn-success w-100">Confirm</a>
+                            <a style="margin-left:5px;" class="btn btn-remove-report btn-sm btn-danger w-100" data-meeting-id="@report.Uuid">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

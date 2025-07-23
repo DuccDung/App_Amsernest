@@ -1,0 +1,253 @@
+﻿@using WebSearchLink.Models.ModeBase
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lịch Đặt Cuộc Hẹn - Database Integration</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 30px;
+            background-color: #f4f6fa;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .booking-container {
+            display: flex;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .booking-info {
+            flex: 1;
+            padding: 30px;
+            background: #f9fafc;
+        }
+
+        .calendar-section {
+            flex: 1.5;
+            padding: 30px;
+            border-right: 1px solid #eee;
+            border-left: 1px solid #eee;
+        }
+
+        .time-slots {
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+            .time-slots button {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 10px;
+                border: 1px solid #0066ff;
+                background-color: white;
+                color: #0066ff;
+                border-radius: 5px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+
+                .time-slots button:hover {
+                    background-color: #0066ff;
+                    color: white;
+                }
+
+                .time-slots button:disabled {
+                    background-color: #f5f5f5;
+                    color: #999;
+                    border-color: #ddd;
+                    cursor: not-allowed;
+                }
+
+        .calendar-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .nav-button {
+            background: #0066ff;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+            .nav-button:hover {
+                background: #0052cc;
+            }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .day-name {
+            text-align: center;
+            font-weight: bold;
+            color: #888;
+            padding: 8px;
+        }
+
+        .day {
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e6f0ff;
+            color: #003366;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+            .day:hover {
+                background-color: #cce0ff;
+            }
+
+            .day.selected {
+                background-color: #0066ff;
+                color: white;
+            }
+
+            .day.has-bookings {
+                background-color: #ffeb3b;
+                color: #333;
+            }
+
+                .day.has-bookings.selected {
+                    background-color: #ff9800;
+                    color: white;
+                }
+
+            .day.fully-booked {
+                background-color: #ffcdd2;
+                color: #d32f2f;
+            }
+
+                .day.fully-booked.selected {
+                    background-color: #f44336;
+                    color: white;
+                }
+
+        .timezone {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #444;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        .no-slots {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .legend {
+            margin-top: 20px;
+            font-size: 12px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .available {
+            background-color: #e6f0ff;
+        }
+
+        .no_selected {
+            background-color: #dc2121;
+        }
+        .has-bookings {
+            background-color: #ffeb3b;
+        }
+
+        .fully-booked {
+            background-color: #ffcdd2;
+        }
+    </style>
+</head>
+@model WTM_User
+<body>
+    <input type="number" id="adminId_choose_time" hidden value="@Model.adminId"/>
+    <input type="number" id="userId_choose_time" hidden value="@Model.userId"/>
+    <input type="number" id="wtmId_choose_time" hidden value="@Model.whenToMeetId"/>
+    <div class="booking-container">
+        <div class="booking-info">
+            <h4>Người tạo: @Model.adminName</h4>
+            <h2>⏱️ Minute Meeting</h2>
+
+            <div class="legend">
+                <h5>Chú thích:</h5>
+                <div class="legend-item">
+                    <div class="legend-color available"></div>
+                    <span>Ngày trống</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color no_selected"></div>
+                    <span>Bạn chưa chọn</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color has-bookings"></div>
+                    <span>Bạn đã chọn nhưng chưa chọn hết</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color fully-booked"></div>
+                    <span>Bạn đã chọn hết</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="calendar-section">
+            <h4>Select a Date & Time</h4>
+            <div class="calendar-nav">
+                <button class="nav-button" id="prevMonth">&lt;</button>
+                <span id="monthYearLabel">Month Year</span>
+                <button class="nav-button" id="nextMonth">&gt;</button>
+            </div>
+
+            <div class="calendar-grid" id="calendarGrid">
+                <!-- Ngày sẽ được render bằng JS -->
+            </div>
+
+            <div class="timezone">
+                🌐 Etc/GMT+7 (08:30)
+            </div>
+        </div>
+
+        <div class="time-slots" id="time-slot-list">
+            <div class="no-slots">Chọn ngày để xem khung giờ</div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="~/asset/js/whentomeet/CalendarUserChoose.js" asp-append-version="true"></script>
+</body>
+</html>

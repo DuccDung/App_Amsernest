@@ -1,0 +1,37 @@
+﻿@model List<TeacherWithReportsViewModel>
+<style>
+    .hide {
+        display: none;
+    }
+</style>
+<div id="overlay-confirm" class="overlay-delete-meeting" style="display:block; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:9999;"></div>
+
+<div id="confirm-modal" style="display:block; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
+    background:white; padding:30px; border-radius:12px; z-index:10000; text-align:center;">
+    <h6>
+        <i class="fas fa-trash-alt"></i>
+        Trash Can Meeting
+    </h6>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Topic</th>
+                <th>Link recording</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                foreach (var report in item.Reports)
+                {
+                    <tr>
+                        <td>@report.Topic</td>
+                        <td>@await Component.InvokeAsync("Link", new { uuId = report.Uuid })</td>
+                        <td><button type="button" id="btn-restore-meeting" data-uuid="@report.Uuid" class="btn btn-outline-success m-2">Restore</button></td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

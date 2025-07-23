@@ -1,0 +1,35 @@
+﻿<style>
+    .sticky-header-dashboard th {
+        position: sticky;
+        top: -3px;
+        padding-top: 10px;
+        background-color: #f8f9fa;
+        z-index: 10;
+    }
+</style>
+<div class="container-fluid pt-4 px-4">
+    <div class="bg-light text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <div class="headerTable-time">
+                <h6 style="margin-right: 10px" class="mb-0">Daily statistics</h6>
+                <div class="date-range">
+                    <label for="from">từ</label>
+                    <input type="date" id="from-in-meetingtoday-summary" name="from" value="">
+
+                    <label for="to">tới</label>
+                    <input type="date" id="to-in-meetingtoday-summary" name="to" value="">
+                </div>
+                <button style="margin:10px" id="btnSearch-report-by-teacherư-in-summary" type="button" class="btn btn-outline-primary m-2">Search</button>
+                <div class="text-center mt-3">
+                    <a id="export-sumary-excel-report" class="btn btn-success mb-3">
+                        📥 Xuất Excel
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div id="dashBoard__table-report-today" style="max-height: 500px; ">
+           <span>Vui lòng nhập dữ liệu!</span>
+        </div>
+    </div>
+</div>
+
