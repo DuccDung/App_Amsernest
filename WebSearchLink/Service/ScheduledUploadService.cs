@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.AspNetCore.Mvc;
 using WebSearchLink.Service;
 
 namespace WebSearchLink.Models
@@ -8,10 +9,12 @@ namespace WebSearchLink.Models
         private readonly IServiceProvider _serviceProvider;
         private readonly ILogger<ScheduledUploadService> _logger;
         private readonly TimeSpan _interval = TimeSpan.FromHours(1.5);
-        public ScheduledUploadService(IServiceProvider serviceProvider, ILogger<ScheduledUploadService> logger)
+        private readonly IWebHostEnvironment _env;
+        public ScheduledUploadService(IServiceProvider serviceProvider, ILogger<ScheduledUploadService> logger, IWebHostEnvironment env)
         {
             _serviceProvider = serviceProvider;
             _logger = logger;
+            _env = env;
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken) // Added 'async' keyword
         {
@@ -22,18 +25,29 @@ namespace WebSearchLink.Models
                 var youtubeService = scope.ServiceProvider.GetRequiredService<IYouTubeService>();
                 try
                 {
-                    // 1. Download Zoom
-                    await zoomService.GetNewRecordingsAsync();
-                    var downloadResults = await zoomService.SaveNewRecordingsAsync();
-                    _logger.LogInformation("Zoom download completed: " + downloadResults.Message);
-
-                    // 2. Upload YouTube
-                    var uploadResults = await youtubeService.UploadAllVideosInFolderAsync();
-                    foreach (var result in uploadResults)
+                    if (CheckVideos() == true)
                     {
-                        _logger.LogInformation("Upload: " + result);
+                        var uploadResultsStillExist = await youtubeService.UploadAllVideosInFolderAsync();
+                        foreach (var result in uploadResultsStillExist)
+                        {
+                            _logger.LogInformation("Upload: " + result);
+                            await Task.Delay(_interval, stoppingToken);
+                        }
                     }
+                    else
+                    {
+                        // 1. Download Zoom
+                        await zoomService.GetNewRecordingsAsync();
+                        var downloadResults = await zoomService.SaveNewRecordingsAsync();
+                        _logger.LogInformation("Zoom download completed: " + downloadResults.Message);
 
+                        // 2. Upload YouTube
+                        var uploadResults = await youtubeService.UploadAllVideosInFolderAsync();
+                        foreach (var result in uploadResults)
+                        {
+                            _logger.LogInformation("Upload: " + result);
+                        }
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -51,6 +65,28 @@ namespace WebSearchLink.Models
                     _logger.LogError(ex, "Error during Zoom report download.");
                 }
                 await Task.Delay(_interval, stoppingToken);
+            }
+        }
+
+        public bool CheckVideos()
+        {
+            var videoPath = Path.Combine(_env.WebRootPath, "videos");
+            if (!Directory.Exists(videoPath))
+            {
+                return false; // Thư mục không tồn tại, coi như không có video
+            }
+
+            var files = Directory.GetFiles(videoPath, "*.*", SearchOption.TopDirectoryOnly)
+                                 .Where(f => f.EndsWith(".mp4") || f.EndsWith(".avi") || f.EndsWith(".mov") || f.EndsWith(".mkv"))
+                                 .ToList();
+
+            if (files.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }
