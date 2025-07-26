@@ -1,0 +1,15 @@
+﻿.card-title {
+    color: #363636;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.card-icon {
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+}
+
+.card-custom {
+    width: 125px;
+}
