@@ -1,10 +1,14 @@
 ﻿@using WebSearchLink.Models.ScheduleModels
 @model List<TimeSlot>
+
 @foreach (var item in Model)
 {
-    <li class="flex items-center justify-between bg-blue-50 p-3 rounded shadow">
-        <span class="text-blue-800 font-medium">@item.CreatedAt | @item.StartTime - @item.EndTime</span>
-        <button onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700 font-bold">🗑️</button>
+    <li class="list-group-item d-flex justify-content-between align-items-center border rounded shadow-sm mb-2">
+        <span class="text-primary fw-medium">
+            @item.CreatedAt | @item.StartTime - @item.EndTime
+        </span>
+        <button onclick="this.parentElement.remove()" type="button" class="btn btn-sm btn-outline-danger">
+            🗑️
+        </button>
     </li>
 }
-

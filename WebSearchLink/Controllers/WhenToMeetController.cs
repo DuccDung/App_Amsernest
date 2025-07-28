@@ -38,6 +38,19 @@ namespace WebSearchLink.Controllers
 
             return Json(new { success = true });
         }
+        [HttpGet]
+        public async Task<IActionResult> HandleDeleteWTM(int Id)
+        {
+            var whenToMeet = await _context.WhenToMeets.FirstOrDefaultAsync(wtm => wtm.Id == Id);
+            if (whenToMeet != null)
+            {
+                whenToMeet.condition = false;
+                await _context.SaveChangesAsync();
+                return Json(new { success = true });
+            }
+
+            return Json(new { success = false, message = "WhenToMeet not found." });
+        }
         [HttpPost]
         public async Task<IActionResult> HandleLogin([FromBody] AuthWTM auth)
         {

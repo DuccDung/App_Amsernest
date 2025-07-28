@@ -29,7 +29,6 @@ $(document).ready(function () {
                         <td>${res.email || 'Không rõ'}</td>
                         <td>${res.create_at?.split('T')[0]}</td>
                         <td>0</td>
-                        <td>0</td>
                         <td>
                             <a href="#" class="btn btn-sm btn-outline-primary">Chi tiết</a>
                             <a href="#" class="btn btn-sm btn-outline-danger ms-2">Xóa</a>
@@ -91,3 +90,46 @@ function addSlot() {
     $('#adminSetTimeEnd').val('');
 }
 
+function addSlotInDetail() {
+    const id = $('#btn-detail-time-slot').data("id");
+    const date = $('#adminSetDateInDetail').val();
+    const start = $('#adminSetTimeStartInDetail').val();
+    const end = $('#adminSetTimeEndInDetail').val();
+
+    if (!date || !start || !end) {
+        alert("Vui lòng nhập đầy đủ thông tin slot.");
+        return;
+    }
+
+    $.ajax({
+        url: '/WhenToMeet/AddSlot',
+        type: 'POST',
+        data: {
+            meetId: id,
+            date: date,
+            timeStart: start,
+            timeEnd: end
+        },
+        success: function (res) {
+            if (res.success) {
+                const li = `
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span>${date} | ${start} - ${end}</span>
+                        <button class="btn btn-sm btn-outline-danger" onclick="this.closest('li').remove()">🗑️ Xoá</button>
+                    </li>
+                `;
+                $('#adminSlotList').prepend(li);
+            } else {
+                alert("Lỗi khi lưu slot.");
+            }
+        },
+        error: function (xhr) {
+            alert("Lỗi server: " + xhr.responseText);
+        }
+    });
+
+    // Reset input sau khi gửi
+    $('#adminSetDate').val('');
+    $('#adminSetTimeStart').val('');
+    $('#adminSetTimeEnd').val('');
+}

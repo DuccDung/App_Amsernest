@@ -21,7 +21,7 @@ namespace WebSearchLink.Views.Shared.Components.TableWhenToMeet
             if (userId != null)
             {
                 listData = await _context.WhenToMeets
-                   .Where(wtm => wtm.CreatedBy == userId)
+                   .Where(wtm => wtm.CreatedBy == userId && wtm.condition == true)
                    .Select(wtm => new WhenToMeet
                    {
                        Id = wtm.Id,

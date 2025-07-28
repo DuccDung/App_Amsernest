@@ -19,7 +19,7 @@ builder.Services.AddDbContext<DbAba3d6Amsernest1234567Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("InformationMeetingContext")));
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<ZoomService>();
-builder.Services.AddHostedService<ScheduledUploadService>();
+//builder.Services.AddHostedService<ScheduledUploadService>();
 builder.WebHost.UseWebRoot("wwwroot");
 // client for YouTube API and Zoom API
 builder.Services.AddHttpClient("Zoom", c =>

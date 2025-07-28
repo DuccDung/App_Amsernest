@@ -29,7 +29,6 @@ $(document).ready(function () {
                         <td>${res.email || 'Không rõ'}</td>
                         <td>${res.create_at?.split('T')[0]}</td>
                         <td>0</td>
-                        <td>0</td>
                         <td>
                             <a href="#" class="btn btn-sm btn-outline-primary">Chi tiết</a>
                             <a href="#" class="btn btn-sm btn-outline-danger ms-2">Xóa</a>

@@ -17,3 +17,27 @@ $(".btn-detail-time-slot").click(function (e) {
         }
     });
 });
+$(document).ready(function () {
+    $(document).on('click', '.btn-remove-time-slot', function (e) {
+        e.preventDefault();
+        var id = $(this).data("id");
+        console.log("Clicked ID:", id); // Check ID output here
+        $.ajax({
+            url: '/WhenToMeet/HandleDeleteWTM',
+            type: 'GET',
+            data: { Id: id },
+            success: function (data) {
+                if (data.success) {
+                    alert("Đã xoá thành công slot thời gian!");
+                    location.reload();
+                } else {
+                    alert("Lỗi khi xoá slot: " + data.message);
+                }
+            },
+            error: function () {
+                alert("Đã xảy ra lỗi khi lấy dữ liệu!");
+            }
+        });
+    });
+});
+

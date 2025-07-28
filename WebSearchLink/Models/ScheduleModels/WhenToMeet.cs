@@ -18,6 +18,8 @@ public class WhenToMeet
     [Column("created_by")]
     public int CreatedBy { get; set; }
 
+    public bool condition { get; set; } = true;
+
     [ForeignKey("CreatedBy")] // <-- đây mới là đúng
     public Admin? CreatedByAdmin { get; set; }
 

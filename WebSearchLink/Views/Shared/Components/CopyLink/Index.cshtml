@@ -1,0 +1,28 @@
+﻿@model string
+
+<button onclick="copyLink(this)" class="btn btn-primary" data-link="@Model">Copy Link</button>
+
+<script>
+    function copyLink(button) {
+        const link = button.getAttribute("data-link");
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(link)
+                .then(() => {
+                    alert("Link đã được sao chép: " + link);
+                })
+                .catch(err => {
+                    console.error("Clipboard copy failed", err);
+                });
+        } else {
+            // fallback cho trình duyệt cũ
+            const tempInput = document.createElement("input");
+            tempInput.value = link;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            tempInput.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            alert("Link đã được sao chép: " + link);
+        }
+    }
+</script>
