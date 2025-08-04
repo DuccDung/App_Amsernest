@@ -17,7 +17,8 @@
                 <th>Type</th>
                 <th>Meeting id</th>
                 <th>Topic</th>
-                <th>Creation time</th>
+                <th>Start time</th>
+                <th>End time</th>
                 <th>Time</th>
                 <th>Link YT</th>
                 <th>Link DL</th>
@@ -53,6 +54,7 @@
                         <td>@report.Id</td>
                         <td class="truncate" title="@report.Topic">@report.Topic</td>
                         <td>@report.StartTime</td>
+                        <td>@report.EndTime</td>
                         <td>@report.Duration</td>
                         <td>@await Component.InvokeAsync("Link", new { uuId = report.Uuid })</td>
                         <td>@await Component.InvokeAsync("LinkDownload", new { uuId = report.Uuid })</td>

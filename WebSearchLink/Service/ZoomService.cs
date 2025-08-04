@@ -412,6 +412,30 @@ namespace WebSearchLink.Service
                     try
                     {
                         var meetingReports = JsonConvert.DeserializeObject<ZoomMeetingReportResponses>(json);
+
+                        if (meetingReports?.ReportResponses != null)
+                        {
+                            var vnTimeZone = TimeZoneInfo.FindSystemTimeZoneById("SE Asia Standard Time");
+
+                            foreach (var report in meetingReports.ReportResponses)
+                            {
+                                if (report.StartTime.HasValue)
+                                {
+                                    report.StartTime = TimeZoneInfo.ConvertTimeFromUtc(
+                                        report.StartTime.Value,
+                                        vnTimeZone
+                                    );
+                                }
+
+                                if (report.EndTime.HasValue)
+                                {
+                                    report.EndTime = TimeZoneInfo.ConvertTimeFromUtc(
+                                        report.EndTime.Value,
+                                        vnTimeZone
+                                    );
+                                }
+                            }
+                        }
                         if (meetingReports?.ReportResponses != null)
                         {
                             result.ReportResponses.AddRange(meetingReports.ReportResponses);
