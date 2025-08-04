@@ -91,7 +91,7 @@ function addSlot() {
 }
 
 function addSlotInDetail() {
-    const id = $('#btn-detail-time-slot').data("id");
+    const id = $('#wtm_id_set_time-detail').val();
     const date = $('#adminSetDateInDetail').val();
     const start = $('#adminSetTimeStartInDetail').val();
     const end = $('#adminSetTimeEndInDetail').val();
@@ -118,7 +118,7 @@ function addSlotInDetail() {
                         <button class="btn btn-sm btn-outline-danger" onclick="this.closest('li').remove()">🗑️ Xoá</button>
                     </li>
                 `;
-                $('#adminSlotList').prepend(li);
+                $('#adminSlotListInDetail').prepend(li);
             } else {
                 alert("Lỗi khi lưu slot.");
             }

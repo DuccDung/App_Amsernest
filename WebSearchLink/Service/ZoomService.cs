@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using WebSearchLink.Models;
+using System.IO;
 
 
 namespace WebSearchLink.Service
@@ -264,6 +265,22 @@ namespace WebSearchLink.Service
                 var response = await _clientDownload.GetAsync(fullDownloadUrl, HttpCompletionOption.ResponseHeadersRead);
                 if (response.IsSuccessStatusCode)
                 {
+                    long? fileSizeBytes = response.Content.Headers.ContentLength;
+                    double fileSizeMB = fileSizeBytes.HasValue ? Math.Round(fileSizeBytes.Value / 1024.0 / 1024.0, 2) : 0;
+
+                    // checkSizeFile
+                    var videoPath = Path.Combine(_env.WebRootPath, "videos");
+                    var checkSizeVideos = GetFolderSizeInMB(videoPath) + fileSizeMB;
+
+                    if (checkSizeVideos >= 2600)
+                    {
+                        return new ResponseModel<string>
+                        {
+                            IsSussess = false,
+                            Message = "File size exceeds the limit of 2.5GB."
+                        };
+                    }
+
                     string filePath = Path.Combine(savePath, fileName);
                     using (var fileStream = new FileStream(filePath, FileMode.Create, FileAccess.Write, FileShare.Read))
                     {
@@ -299,7 +316,6 @@ namespace WebSearchLink.Service
                 };
             }
         }
-       
         public async Task<ResponseModel<string>> SaveNewRecordingsAsync()
         {
             var listLink = await _context.RecordingFiles.Include(m => m.MeetingUu)
@@ -313,7 +329,9 @@ namespace WebSearchLink.Service
             {
                 if (!string.IsNullOrEmpty(item.DownloadUrl) && count < 5)
                 {
+                  
                     var checkSave = await SaveRecordingToServerAsync(item.DownloadUrl, $"{item.FileId}.mp4");
+
                     if (!checkSave.IsSussess)
                     {
                         listDownloadUrlsFail.Add(item.DownloadUrl);
@@ -329,7 +347,7 @@ namespace WebSearchLink.Service
                         count++;
                     }
                 }
-                if (count > 10) break;
+                if (count > 5) break;
             }
 
             return new ResponseModel<string>
@@ -339,7 +357,7 @@ namespace WebSearchLink.Service
                 DataList = listDownloadUrlsFail
             };
         }
-     
+
         public async Task<ResponseModel<ZoomMeetingReportResponses>> GetReportingFilesToWeekAsync()
         {
             var isrefreshToken = await RefeshAccessTokenZoom();
@@ -542,69 +560,21 @@ namespace WebSearchLink.Service
             }
         }
 
-        //public async Task<ResponseModel<ZoomMeetingReportResponses>> GetReportingFilesChooseAsync(DateTime from , DateTime to)
-        //{
-        //    var isrefreshToken = await RefeshAccessTokenZoom();
-        //    if (!isrefreshToken.IsSussess)
-        //    {
-        //        return new ResponseModel<ZoomMeetingReportResponses>
-        //        {
-        //            IsSussess = false,
-        //            Message = isrefreshToken.Message
-        //        };
-        //    }
+        public static double GetFolderSizeInMB(string folderPath)
+        {
+            if (!Directory.Exists(folderPath))
+                return 0;
 
-        //    var accessToken = _cache.Get<string>("zoom_access_token");
-        //    var fromString = from.ToString("yyyy-MM-dd");
-        //    var toString = to.ToString("yyyy-MM-dd");
+            long totalBytes = 0;
+            DirectoryInfo dirInfo = new DirectoryInfo(folderPath);
 
+            foreach (FileInfo file in dirInfo.GetFiles("*", SearchOption.AllDirectories))
+            {
+                totalBytes += file.Length;
+            }
 
-        //    List<string> userId = new List<string>();
-        //    ZoomMeetingReportResponses result = new ZoomMeetingReportResponses
-        //    {
-        //        ReportResponses = new List<ZoomMeetingReportResponse>()
-        //    };
-        //    var users = await GetUserAsync();
-
-        //    if (users.Data?.Users != null)
-        //    {
-        //        userId.AddRange(users.Data.Users.Select(u => u.Email!));
-        //    }
-
-        //    foreach (var user in userId)
-        //    {
-        //        var requestUrl = $"v2/report/users/{user}/meetings?from={fromString}&to={toString}";
-        //        _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-        //        var response = await _client.GetAsync(requestUrl);
-        //        if (!response.IsSuccessStatusCode)
-        //        {
-        //            var error = await response.Content.ReadAsStringAsync();
-        //            throw new Exception($"Zoom API error: {response.StatusCode} - {error}");
-        //        }
-
-        //        var json = await response.Content.ReadAsStringAsync();
-        //        var meetingReports = JsonConvert.DeserializeObject<ZoomMeetingReportResponses>(json);
-        //        if (meetingReports?.ReportResponses != null)
-        //        {
-        //            result.ReportResponses.AddRange(meetingReports.ReportResponses);
-        //        }
-        //    }
-
-        //    if (result.ReportResponses == null || result.ReportResponses.Count == 0)
-        //    {
-        //        return new ResponseModel<ZoomMeetingReportResponses>
-        //        {
-        //            IsSussess = false,
-        //            Message = "No meeting reports found."
-        //        };
-        //    }
-
-        //    return new ResponseModel<ZoomMeetingReportResponses>
-        //    {
-        //        IsSussess = true,
-        //        Message = "Report retrieved successfully.",
-        //        Data = result
-        //    };
-        //}
+            double sizeInMB = totalBytes / (1024.0 * 1024.0);
+            return Math.Round(sizeInMB, 2);
+        }
     }
 }

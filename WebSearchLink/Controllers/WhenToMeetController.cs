@@ -80,7 +80,7 @@ namespace WebSearchLink.Controllers
         {
             var timeSlot = new TimeSlot
             {
-                SlotDate = DateOnly.FromDateTime(date),
+                SlotDate = DateOnly.FromDateTime(date), 
                 StartTime = timeStart,
                 EndTime = timeEnd,
                 WhenToMeetId = meetId,
@@ -325,5 +325,11 @@ namespace WebSearchLink.Controllers
 
             return View(listData);
         }
+        public async Task<IActionResult> TableUserCount(int wtmId)
+        {
+            await Task.CompletedTask;
+            return View();
+        }
     }
 }
+ 

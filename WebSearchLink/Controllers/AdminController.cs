@@ -333,12 +333,13 @@ namespace WebSearchLink.Controllers
             worksheet.Cells[1, 2].Value = "Type";
             worksheet.Cells[1, 3].Value = "Meeting ID";
             worksheet.Cells[1, 4].Value = "Topic";
-            worksheet.Cells[1, 5].Value = "Creation time";
-            worksheet.Cells[1, 6].Value = "Duration (min)";
-            worksheet.Cells[1, 7].Value = "Link YT";
-            worksheet.Cells[1, 8].Value = "Link Download";
-            worksheet.Cells[1, 9].Value = "Feedback";
-            worksheet.Cells[1, 10].Value = "Wage";
+            worksheet.Cells[1, 5].Value = "Start time";
+            worksheet.Cells[1, 6].Value = "End time";
+            worksheet.Cells[1, 7].Value = "Duration (min)";
+            worksheet.Cells[1, 8].Value = "Link YT";
+            worksheet.Cells[1, 9].Value = "Link Download";
+            worksheet.Cells[1, 10].Value = "Feedback";
+            worksheet.Cells[1, 11].Value = "Wage";
 
             int row = 2;
             List<TeacherWithReportsViewModel> modelDataFromDatabase; // Corrected variable initialization  
@@ -385,11 +386,12 @@ namespace WebSearchLink.Controllers
                     worksheet.Cells[row, 3].Value = report.Id;
                     worksheet.Cells[row, 4].Value = report.Topic;
                     worksheet.Cells[row, 5].Value = report.StartTime?.ToString("yyyy-MM-dd HH:mm");
-                    worksheet.Cells[row, 6].Value = report.Duration;
-                    worksheet.Cells[row, 7].Value = link?.Url ?? "Không tồn tại!";
-                    worksheet.Cells[row, 8].Value = link?.DownloadUrl ?? "Không tồn tại!";
-                    worksheet.Cells[row, 9].Value = report.Feedback;
-                    worksheet.Cells[row, 10].Value = "";
+                    worksheet.Cells[row, 6].Value = report.EndTime?.ToString("yyyy-MM-dd HH:mm");
+                    worksheet.Cells[row, 7].Value = report.Duration;
+                    worksheet.Cells[row, 8].Value = link?.Url ?? "Không tồn tại!";
+                    worksheet.Cells[row, 9].Value = link?.DownloadUrl ?? "Không tồn tại!";
+                    worksheet.Cells[row, 10].Value = report.Feedback;
+                    worksheet.Cells[row, 11].Value = "";
 
                     row++;
                 }

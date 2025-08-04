@@ -1,0 +1,179 @@
+    body {
+        font-family: 'Source Serif Pro', serif;
+    }
+
+    html {
+        font-size: 62.5%;
+    }
+
+    #header--wordmark {
+        font-family: 'Source Serif Pro', serif;
+        font-size: 29.5556px;
+    }
+
+    .header-sticky {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 3000;
+    }
+
+    .background-image--banner {
+        background-size: cover;
+        background-position: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+        z-index: -1;
+    }
+
+    .overlay {
+        position: absolute;
+        /* Đặt lớp overlay theo vị trí tuyệt đối */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom,
+                rgba(0, 0, 0, 1) 0px,
+                /* Đen đậm ở trên */
+                rgba(0, 0, 0, 0.6) 70px,
+                /* Nhẹ dần xuống */
+                rgba(0, 0, 0, 0.5) 90px,
+                /* Nhẹ dần xuống */
+                rgba(0, 0, 0, 0.5) 100px,
+                /* Nhẹ dần xuống */
+                rgba(0, 0, 0, 0) 110px
+                /* Trong suốt sau khoảng 100px */
+            );
+
+        pointer-events: none;
+        /* Để không chặn các sự kiện chuột */
+    }
+
+    .search-btn {
+        background-color: transparent;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .search-btn:hover {
+        background-color: #003fb3;
+        /* màu đỏ hover */
+        color: white;
+    }
+
+    .nav-link {
+        font-size: 1.9rem;
+    }
+
+    .home__header-name {
+        font-size: 3.5rem;
+    }
+
+    #site-navigation {
+        height: 50px;
+        width: 100%;
+        line-height: 1.8;
+        font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-weight: 400;
+        text-align: center;
+
+    }
+
+    .site-navigation-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .nav-header-link {
+        font-size: 2rem;
+        font-weight: 600;
+        margin-inline-start: 2rem;
+        color: white;
+    }
+
+    .home-text-center {
+        text-shadow: 0 0 30px rgba(0, 0, 0, .7);
+        color: white;
+        font-size: 10.4rem;
+    }
+
+    .header-sticky-hover {
+        background-color: #003fb3;
+    }
+
+    .home-nav-hover {
+        background-color: white;
+    }
+
+    .home-nav-item-hover {
+        color: black;
+        font-weight: 500;
+    }
+
+    .shadow-bottom {
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+        .containner-content-main {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background-color: white;
+            margin-top: 100vh;
+            /* Đặt bằng chiều cao banner */
+            z-index: 2000;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .home-main-h2 {
+            font-size: 5rem;
+            margin-top: 6rem;
+            margin-bottom: 6rem;
+            font-weight: 700;
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        .home-main-p {
+            font-size: 3.5rem;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            line-height: 5rem;
+        }
+
+        .stanford-btn {
+            display: inline-block;
+            background-color: #003fb3;
+            /* hoặc #8C1515 theo Stanford chính thức */
+            color: white;
+            font-weight: 600;
+            font-size: 1.8rem;
+            padding: 1rem 2.5rem;
+            text-align: center;
+            text-decoration: none;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border-radius: 2px;
+            margin-top: 2rem;
+        }
+
+        .stanford-btn:hover {
+            background-color: #04348c;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+        }

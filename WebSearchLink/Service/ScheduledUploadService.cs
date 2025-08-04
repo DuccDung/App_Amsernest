@@ -31,7 +31,6 @@ namespace WebSearchLink.Models
                         foreach (var result in uploadResultsStillExist)
                         {
                             _logger.LogInformation("Upload: " + result);
-                            await Task.Delay(_interval, stoppingToken);
                         }
                     }
                     else
@@ -56,7 +55,6 @@ namespace WebSearchLink.Models
 
                 try
                 {
-                    await Task.Delay(TimeSpan.FromMinutes(15), stoppingToken);
                     await zoomService.DownloadReportFormZoomToDbAsync();
                     _logger.LogInformation("Report sync completed.");
                 }
@@ -64,7 +62,6 @@ namespace WebSearchLink.Models
                 {
                     _logger.LogError(ex, "Error during Zoom report download.");
                 }
-                await Task.Delay(_interval, stoppingToken);
             }
         }
 
@@ -73,13 +70,12 @@ namespace WebSearchLink.Models
             var videoPath = Path.Combine(_env.WebRootPath, "videos");
             if (!Directory.Exists(videoPath))
             {
-                return false; // Thư mục không tồn tại, coi như không có video
+                return false; 
             }
 
             var files = Directory.GetFiles(videoPath, "*.*", SearchOption.TopDirectoryOnly)
                                  .Where(f => f.EndsWith(".mp4") || f.EndsWith(".avi") || f.EndsWith(".mov") || f.EndsWith(".mkv"))
                                  .ToList();
-
             if (files.Count == 0)
             {
                 return false;
@@ -89,5 +85,9 @@ namespace WebSearchLink.Models
                 return true;
             }
         }
+
+
+       
     }
+
 }
