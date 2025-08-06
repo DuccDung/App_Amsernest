@@ -19,7 +19,15 @@
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/res_pc.css">
+    <link rel="stylesheet" href="/assets/css/res_mobile_tablet.css">
+    <link rel="stylesheet" href="/assets/css/res_mobile.css">
 </head>
+
+<style>
+    .containner-content-main {
+        font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+    }
+</style>
 
 <body>
     <section>
@@ -83,14 +91,38 @@
                     </nav>
                 </div>
             </section>
+            <!-- // Mobile Menu Toggle -->
+            <div class="navbar-tablet-mobile">
+                <div class="logo">Amsernest</div>
+                <div class="menu-icon" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i> Menu
+                </div>
+            </div>
+            <div class="menu-panel-tablet-mobile" id="menuPanel">
+                <div class="main-menu">
+                    <a href="#">Academics</a>
+                    <a href="#">Research</a>
+                    <a href="#">Health Care</a>
+                    <a href="#">Campus Life</a>
+                    <a href="#">Athletics</a>
+                    <a href="#">Admission</a>
+                    <a href="#">About</a>
+                    <a href="#">News</a>
+                    <a href="#">Events</a>
+                </div>
+                <div class="info-menu">
+                    <span>Information for:</span>
+                    <a href="#">Students</a>
+                    <a href="#">Faculty & Staff</a>
+                    <a href="#">Families</a>
+                    <a href="#">Visitors</a>
+                    <a href="#">Alumni</a>
+                </div>
+            </div>
         </div>
     </section>>
 
-    <style>
-        .containner-content-main {
-            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
-        }
-    </style>
+
     <main id="home-main-height" class="containner-content-main">
         <div class="container">
             <div class="row">
@@ -107,160 +139,7 @@
                 </div>
             </div>
         </div>
-        <style>
-            .home-area-course {
-                background-color: #f4f4f4;
-                color: black;
-                margin-top: 4rem;
-            }
 
-            .home-area-course-item span {
-                font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
-                font-weight: 500;
-                font-size: 2.8rem;
-                margin-bottom: 1rem;
-            }
-
-            .home-item-course-img {
-                background-size: cover;
-                background-position: center;
-                height: 100%;
-                margin: 1rem;
-                height: 40rem;
-                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            }
-
-            .zoom-container {
-                overflow: hidden;
-                margin: 20px auto;
-                box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            }
-
-            .zoom-container img {
-                width: 100%;
-                height: 380px;
-                display: block;
-                transition: transform 0.4s ease;
-                /* Hiệu ứng mượt */
-            }
-
-            .zoom-container:hover img {
-                transform: scale(1.1);
-                /* Phóng to 110% */
-            }
-
-            .zoom-container {
-                position: relative;
-            }
-
-            .zoom-container .text-overlay {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                background-color: rgba(0, 0, 0, 0.5);
-                color: white;
-                opacity: 0;
-                transition: opacity 0.3s ease;
-            }
-
-            .zoom-container:hover .text-overlay {
-                opacity: 1;
-            }
-
-            .home-area-course-item-text {
-                position: absolute;
-                bottom: 20px;
-                left: 7px;
-                color: white;
-                text-align: left;
-                margin-left: 1rem;
-                font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
-            }
-
-            .home-area-course-item-text h4 {
-                margin: 0;
-                font-weight: 600;
-                color: #e7dfdf;
-                font-size: 14px;
-                text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
-            }
-
-            .home-area-course-item-text h2 {
-                margin: 5px 0 0;
-                font-weight: bold;
-                font-size: 24px;
-                text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
-            }
-
-            .overlay-bottom-up {
-                position: absolute;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                height: 50%;
-                background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0));
-                pointer-events: none;
-                /* Cho phép click xuyên qua */
-            }
-        </style>
-        <style>
-            .blog-container-card {
-                height: 380px;
-                background-color: white;
-                overflow: hidden;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                margin: 20px auto;
-                text-align: left;
-                transition: box-shadow 0.3s ease;
-                /* hiệu ứng đổi shadow */
-            }
-
-            .blog-container-card:hover {
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-                /* shadow đậm hơn khi hover */
-            }
-
-            .blog-container-card img {
-                width: 100%;
-                height: auto;
-                display: block;
-                transition: transform 0.4s ease;
-                /* hiệu ứng mượt */
-            }
-
-            .blog-container-card:hover img {
-                transform: scale(1.05);
-            }
-
-            .blog-container-card-content {
-                padding: 20px;
-            }
-
-            .category {
-                font-size: 15px;
-                font-weight: bold;
-                color: #8c1d40;
-                text-transform: uppercase;
-                margin-bottom: 5px;
-            }
-
-            .title {
-                font-size: 18px;
-                font-weight: bold;
-                color: #000;
-                line-height: 1.4;
-            }
-
-            .card-content {
-                padding: 28px;
-            }
-        </style>
         <div class="home-area-course text-center">
             <div class="container">
                 <div class="row">
@@ -270,9 +149,10 @@
                     </div>
                 </div>
             </div>
+
             <div class="container">
                 <div class="row">
-                    <div class="col-6 home-item-course home-item-course-pop">
+                    <div class="col-12 col-md-6 home-item-course home-item-course-pop">
                         <div class="zoom-container">
                             <img src="/assets/img/cous_1.jpg" alt="Hover Image">
                             <div class="text-overlay">
@@ -288,7 +168,7 @@
                         </div>
                     </div>
 
-                    <div class="col-3 home-item-course">
+                    <div class="col-6 col-md-3 home-item-course">
                         <div class="blog-container">
                             <div class="blog-container-card">
                                 <img src="/assets/img/cous_2.jpg" alt="John Donahoe">
@@ -300,7 +180,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3 home-item-course">
+                    <div class="col-6 col-md-3 home-item-course">
                         <div class="blog-container">
                             <div class="blog-container-card">
                                 <img src="/assets/img/cous_3.jpg" alt="John Donahoe">
@@ -316,7 +196,7 @@
                 </div>
                 <!-- ========================== -->
                 <div class="row">
-                    <div class="col-3 home-item-course">
+                    <div class="col-6 col-md-3  home-item-course">
                         <div class="blog-container">
                             <div class="blog-container-card">
                                 <img src="/assets/img/cous_4.png" alt="John Donahoe">
@@ -327,18 +207,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3 home-item-course">
+                    <div class="col-6 col-md-3 home-item-course">
                         <div class="blog-container">
                             <div class="blog-container-card">
                                 <img src="/assets/img/cous_5.jpg" alt="John Donahoe">
                                 <div class="card-content">
                                     <div class="category">Health & Medicine</div>
-                                    <div class="title">For city dwellers, even 15 minutes in nature can improve mental health</div>
+                                    <div class="title">For city dwellers, even 15 minutes in nature can improve mental
+                                        health</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-6 home-item-course home-item-course-pop">
+                    <div class="col-12 col-md-6 home-item-course home-item-course-pop">
                         <div class="zoom-container">
                             <img src="/assets/img/cous_6.jpg" alt="Hover Image">
                             <div class="text-overlay">
@@ -354,13 +235,232 @@
                         </div>
                     </div>
                 </div>
-                 <a href="#" class="stanford-btn">More Campus News</a>
+                <a href="#" class="stanford-btn">More Campus News</a>
+            </div>
+
+            <div class="home-area-academics">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 home-area-academics-item text-center">
+                            <h2 class="text-center home-main-h2">Academics</h2>
+                            <span class="home-main-p">
+                                Preparing students to make meaningful contributions to society as engaged citizens and
+                                leaders in a complex world
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="container my-5">
+                    <div class="row g-4">
+                        <div class="col-md-4">
+                            <div class="edu-card">
+                                <img src="/assets/img/aca_1.jpg" alt="Undergraduate Education">
+                                <h5>Undergraduate Education</h5>
+                                <p>Rich learning experiences that provide a broad liberal arts foundation and deep
+                                    subject-area expertise.</p>
+                                <a href="#">Undergraduate Education &gt;</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="edu-card">
+                                <img src="/assets/img/aca_2.jpg" alt="Graduate Education">
+                                <h5>Graduate Education</h5>
+                                <p>Unsurpassed opportunities to participate in the advancement of entire fields of
+                                    knowledge.</p>
+                                <a href="#">Graduate Education &gt;</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="edu-card">
+                                <img src="/assets/img/aca_3.jpg" alt="Driving Impact">
+                                <h5>Driving Impact</h5>
+                                <p>Continuing adult education, executive and professional programs, and programs for
+                                    K–12 students.</p>
+                                <a href="#">Lifelong Learning &gt;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="home-area-event">
+                <div class="row">
+                    <div class="col-md-12 home-area-academics-item text-center">
+                        <h2 class="text-center home-main-h2">Upcoming Events</h2>
+                    </div>
+                </div>
+                <div class="container my-5">
+                    <div class="row g-4">
+                        <!-- Card 1 -->
+                        <div class="col-md-3">
+                            <div class="event-card">
+                                <div class="event-image">
+                                    <img src="/assets/img/event_1.jpg" alt="Event Image">
+                                    <div class="event-date">
+                                        AUG<br><span>04</span>
+                                    </div>
+                                </div>
+                                <div class="event-content">
+                                    <div class="event-type">Exhibition</div>
+                                    <div class="event-title">Branner Library Monthly Book & Map Exhibit - California
+                                        Coastal Ecosystems</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="col-md-3">
+                            <div class="event-card">
+                                <div class="event-image">
+                                    <img src="/assets/img/even_2.jpg" alt="Event Image">
+                                    <div class="event-date">
+                                        AUG<br><span>04</span>
+                                    </div>
+                                </div>
+                                <div class="event-content">
+                                    <div class="event-type">Exhibition</div>
+                                    <div class="event-title">New Acquisitions exhibition, Bowes Art & Architecture
+                                        Library, Summer 2025</div>
+                                    <div class="event-time">09:00 AM PT</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="col-md-3">
+                            <div class="event-card">
+                                <div class="event-image">
+                                    <img src="/assets/img/event_3.jpg" alt="Event Image">
+                                    <div class="event-date">
+                                        AUG<br><span>04</span>
+                                    </div>
+                                </div>
+                                <div class="event-content">
+                                    <div class="event-type">Exhibition</div>
+                                    <div class="event-title">Spotlight on Special Collections</div>
+                                    <div class="event-time">04:30 PM PT</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="col-md-3">
+                            <div class="event-card">
+                                <div class="event-image">
+                                    <img src="/assets/img/event_4.jpg" alt="Event Image">
+                                    <div class="event-date">
+                                        AUG<br><span>05</span>
+                                    </div>
+                                </div>
+                                <div class="event-content">
+                                    <div class="event-type">Exhibition</div>
+                                    <div class="event-title">The Colonial Gulf: How Empires Documented a Region</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
+
+        <footer class="footer-section">
+            <div class="container">
+                <!-- Top Social Row -->
+                <div class="d-flex justify-content-end mb-3 social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-apple"></i></a>
+                </div>
+
+                <div class="row">
+                    <!-- Left columns -->
+                    <div class="col-md-9">
+                        <div class="row footer-links">
+                            <div class="col-6 col-md-3">
+                                <div class="footer-title">Schools</div>
+                                <a href="#">Business</a>
+                                <a href="#">Education</a>
+                                <a href="#">Engineering</a>
+                                <a href="#">Humanities & Sciences</a>
+                                <a href="#">Law</a>
+                                <a href="#">Medicine</a>
+                                <a href="#">Sustainability</a>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="footer-title">Academics</div>
+                                <a href="#">Undergraduate Majors</a>
+                                <a href="#">Graduate Programs</a>
+                                <div class="footer-title mt-3">Research</div>
+                                <a href="#">Research Centers A - Z</a>
+                                <a href="#">Libraries</a>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="footer-title">Health Care</div>
+                                <a href="#">Stanford Health Care</a>
+                                <a href="#">Stanford Children’s Health</a>
+                                <div class="footer-title mt-3">Online Learning</div>
+                                <a href="#">Stanford Online</a>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="footer-title">About Stanford</div>
+                                <a href="#">Facts</a>
+                                <a href="#">History</a>
+                                <a href="#">Accreditation</a>
+                                <div class="footer-title mt-3">Resources</div>
+                                <a href="#">Campus Map</a>
+                                <a href="#">Community Engagement</a>
+                                <a href="#">Directory</a>
+                                <a href="#">Stanford Profiles</a>
+                                <div class="footer-title mt-3">Admission</div>
+                                <a href="#">Undergraduate</a>
+                                <a href="#">Graduate</a>
+                                <a href="#">Financial Aid</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right buttons -->
+                    <div class="col-md-3 footer-buttons">
+                        <button class="btn">Applying</button>
+                        <button class="btn">Visiting</button>
+                        <button class="btn">Giving</button>
+                        <button class="btn">Careers</button>
+                        <button class="btn">Faculty Positions</button>
+                        <button class="btn">Contact</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom text-center mt-4">
+                <div class="container">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                        <div class="mb-2 mb-md-0">
+                            <strong>Stanford</strong> Home &nbsp;&nbsp;
+                            <a href="#">Maps & Directions</a>
+                            <a href="#">Search Stanford</a>
+                            <a href="#">Emergency Info</a>
+                        </div>
+                        <div>
+                            <a href="#">Terms of Use</a>
+                            <a href="#">Privacy</a>
+                            <a href="#">Copyright</a>
+                            <a href="#">Trademarks</a>
+                            <a href="#">Non-Discrimination</a>
+                            <a href="#">Accessibility</a>
+                            <span class="d-block d-md-inline">&copy; Stanford University. Stanford, California
+                                94305.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </main>
-    <!-- <footer class="bg-dark text-white text-center py-3 mt-4">
-        &copy; 2025 Amsernest. All rights reserved.
-    </footer> -->
+
 </body>
 <script>
     const header = document.querySelector('.header-sticky');
@@ -387,6 +487,10 @@
             });
         }
     });
+    function toggleMenu() {
+        const panel = document.getElementById("menuPanel");
+        panel.style.display = (panel.style.display === "block") ? "none" : "block";
+    }
 </script>
 
 </html>

@@ -1,0 +1,93 @@
+    .navbar-tablet-mobile {
+        display: none;
+        background-color: #8C1515;
+        color: white;
+        padding: 10px 20px;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+    }
+
+    .navbar-tablet-mobile .logo {
+        font-size: 22px;
+        font-weight: bold;
+    }
+
+    .navbar-tablet-mobile .menu-icon {
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    .menu-panel-tablet-mobile {
+        display: none;
+        background-color: #fff;
+        color: black;
+        padding: 10px 20px;
+    }
+
+    .menu-panel-tablet-mobile .main-menu,
+    .menu-panel-tablet-mobile .info-menu {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .menu-panel-tablet-mobile .info-menu {
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .menu-panel-tablet-mobile a {
+        text-decoration: none;
+        color: black;
+        padding: 5px 0;
+    }
+
+    .menu-panel-tablet-mobile a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 999px) {
+        .navbar-tablet-mobile {
+            display: flex;
+        }
+
+        .header-sticky header {
+            display: none;
+        }
+
+        .header-sticky section {
+            display: none;
+        }
+
+        .overlay {
+            display: none;
+        }
+
+        .home-text-center {
+            text-shadow: 0 0 30px rgba(0, 0, 0, .7);
+            color: white;
+            font-size: 4.4rem;
+        }
+
+        .home-main-h2 {
+            font-size: 4rem;
+            margin-top: 6rem;
+            margin-bottom: 6rem;
+            font-weight: 700;
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        .home-main-p {
+            font-size: 2.5rem;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            line-height: 5rem;
+        }
+    }

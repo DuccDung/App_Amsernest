@@ -1,0 +1,32 @@
+    @media (max-width: 700px) {
+        .home-main-p {
+            font-size: 1.5rem;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            line-height: 2rem;
+        }
+
+        .home-main-h2 {
+            font-size: 3rem;
+            margin-top: 6rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        .home-main-h2 {
+            font-size: 2rem;
+            margin-top: 6rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        .home-area-course-item span {
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+    }
