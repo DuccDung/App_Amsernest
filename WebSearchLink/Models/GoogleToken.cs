@@ -22,4 +22,6 @@ public partial class GoogleToken
     public DateTime IssuedAt { get; set; }
 
     public DateTime? UpdatedAt { get; set; }
+    public string ClientId { get; set; } = null!;
+    public string ClientSecret { get; set; } = null!;
 }

@@ -26,9 +26,9 @@ namespace WebSearchLink.Service
             _config = config;
             _env = env;
         }
-        public async Task<TokenResponse> GetAccessToken()
+        public async Task<TokenResponse> GetAccessToken(GoogleToken acc)
         {
-            var token = await RefreshToken();
+            var token = await RefreshToken(acc);
             if (token.IsSussess && token.Data != null)
             {
                 return token.Data;
@@ -38,9 +38,9 @@ namespace WebSearchLink.Service
                 throw new Exception(token.Message ?? "Failed to refresh token");
             }
         }
-        public async Task<ResponseModel<TokenResponse>> RefreshToken()
+        public async Task<ResponseModel<TokenResponse>> RefreshToken(GoogleToken acc)
         {
-            var tokenEntry = await _context.GoogleTokens.FirstOrDefaultAsync(x => x.UserId == "duccdung999@gmail.com");
+            var tokenEntry = await _context.GoogleTokens.FirstOrDefaultAsync(x => x.UserId == acc.UserId);
             if (tokenEntry == null || string.IsNullOrEmpty(tokenEntry.RefreshToken))
             {
                 return new ResponseModel<TokenResponse>
@@ -54,8 +54,8 @@ namespace WebSearchLink.Service
             var tokenExpiryTime = tokenEntry.IssuedAt.AddSeconds(tokenEntry.ExpiresIn ?? 0);
             var clientSecrets = new ClientSecrets
             {
-                ClientId = _config["Google:ClientId"],
-                ClientSecret = _config["Google:ClientSecret"]
+                ClientId = acc.ClientId,
+                ClientSecret = acc.ClientSecret
             };
 
             var flow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
@@ -68,7 +68,7 @@ namespace WebSearchLink.Service
                 RefreshToken = tokenEntry.RefreshToken
             };
 
-            var newToken = await flow.RefreshTokenAsync("duccdung999@gmail.com", token.RefreshToken, CancellationToken.None);
+            var newToken = await flow.RefreshTokenAsync(acc.UserId, token.RefreshToken, CancellationToken.None);
 
             // Update the new access_token  
             tokenEntry.AccessToken = newToken.AccessToken;
@@ -84,68 +84,136 @@ namespace WebSearchLink.Service
                 Data = newToken
             };
         }
-        public async Task<UserCredential> GetUserCredentialFromToken()
-        {
-            var token = await GetAccessToken(); // từ DB
+        //public async Task<UserCredential> GetUserCredentialFromToken()
+        //{
+        //    var token = await GetAccessToken(); 
+
+        //    var flow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
+        //    {
+        //        ClientSecrets = new ClientSecrets
+        //        {
+        //            ClientId = _config["Google:ClientId"],
+        //            ClientSecret = _config["Google:ClientSecret"]
+        //        }
+        //    });
+
+        //    return new UserCredential(flow, "duccdung999@gmail.com", token);
+        //}
+
+        public async Task<UserCredential> GetUserCredential(GoogleToken account)
+        { 
+            var token = await GetAccessToken(account);
 
             var flow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
             {
                 ClientSecrets = new ClientSecrets
                 {
-                    ClientId = _config["Google:ClientId"],
-                    ClientSecret = _config["Google:ClientSecret"]
+                    ClientId = account.ClientId,
+                    ClientSecret = account.ClientSecret
                 }
             });
 
-            return new UserCredential(flow, "duccdung999@gmail.com", token);
+            return new UserCredential(flow, account.UserId, token);
         }
+        //public async Task<string> UploadVideoAsync(string filePath, string title, string description)
+        //{
+        //    try
+        //    {
+        //        var credential = await GetUserCredentialFromToken(); 
 
-        public async Task<string> UploadVideoAsync(string filePath, string title, string description)
+        //        var youtubeService = new YouTubeService(new BaseClientService.Initializer
+        //        {
+        //            HttpClientInitializer = credential,
+        //            ApplicationName = "Server-ToolDow&UpVideo"
+        //        });
+
+        //        var video = new Video
+        //        {
+        //            Snippet = new VideoSnippet
+        //            {
+        //                Title = title,
+        //                Description = description,
+        //                Tags = new[] { "asp.net", "upload", "youtube" },
+        //                CategoryId = "22" // 22 = People & Blogs
+        //            },
+        //            Status = new VideoStatus { PrivacyStatus = "unlisted" }
+        //        };
+
+        //        using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+        //        var uploadRequest = youtubeService.Videos.Insert(video, "snippet,status", stream, "video/*");
+        //        uploadRequest.ChunkSize = ResumableUpload.MinimumChunkSize;
+        //        var progress = await uploadRequest.UploadAsync();
+
+        //        if (progress.Status == Google.Apis.Upload.UploadStatus.Completed)
+        //        {
+        //            var videoId = uploadRequest.ResponseBody.Id;
+        //            return $"https://www.youtube.com/watch?v={videoId}";
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Upload thất bại: " + progress.Exception?.Message);
+        //            return "";
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine($"Lỗi khi upload video: {ex.Message}");
+        //        return "";
+        //    }
+        //}
+        public async Task<string> UploadVideoWithFallbackAsync(string filePath, string title, string description)
         {
-            try
+            var accounts = await _context.GoogleTokens.ToListAsync();
+
+            foreach (var account in accounts)
             {
-                var credential = await GetUserCredentialFromToken(); // dùng thay cho AuthorizeAsync
-
-                var youtubeService = new YouTubeService(new BaseClientService.Initializer
+                try
                 {
-                    HttpClientInitializer = credential,
-                    ApplicationName = "Server-ToolDow&UpVideo"
-                });
-
-                var video = new Video
-                {
-                    Snippet = new VideoSnippet
+                    var credential = await GetUserCredential(account); 
+                    var youtubeService = new YouTubeService(new BaseClientService.Initializer
                     {
-                        Title = title,
-                        Description = description,
-                        Tags = new[] { "asp.net", "upload", "youtube" },
-                        CategoryId = "22" // 22 = People & Blogs
-                    },
-                    Status = new VideoStatus { PrivacyStatus = "unlisted" }
-                };
+                        HttpClientInitializer = credential,
+                        ApplicationName = "MultiAccountUploader"
+                    });
 
-                using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-                var uploadRequest = youtubeService.Videos.Insert(video, "snippet,status", stream, "video/*");
-                uploadRequest.ChunkSize = ResumableUpload.MinimumChunkSize;
-                var progress = await uploadRequest.UploadAsync();
+                    var video = new Video
+                    {
+                        Snippet = new VideoSnippet
+                        {
+                            Title = title,
+                            Description = description,
+                            Tags = new[] { "upload", "youtube", "asp.net" },
+                            CategoryId = "22"
+                        },
+                        Status = new VideoStatus { PrivacyStatus = "unlisted" }
+                    };
 
-                if (progress.Status == Google.Apis.Upload.UploadStatus.Completed)
-                {
-                    var videoId = uploadRequest.ResponseBody.Id;
-                    return $"https://www.youtube.com/watch?v={videoId}";
+                    using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                    var uploadRequest = youtubeService.Videos.Insert(video, "snippet,status", stream, "video/*");
+                    uploadRequest.ChunkSize = ResumableUpload.MinimumChunkSize;
+                    var progress = await uploadRequest.UploadAsync();
+
+                    if (progress.Status == UploadStatus.Completed)
+                    {
+                        return $"https://www.youtube.com/watch?v={uploadRequest.ResponseBody.Id}";
+                    }
+                    else
+                    {
+                        if (IsQuotaError(progress.Exception)) continue;  
+                        else throw progress.Exception;  
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Console.WriteLine("Upload thất bại: " + progress.Exception?.Message);
-                    return "";
+                    Console.WriteLine($"Upload failed (Account: {account.UserId}): {ex.Message}");
+                    if (IsQuotaError(ex)) continue;
+                    else throw;
                 }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Lỗi khi upload video: {ex.Message}");
-                return "";
-            }
+
+            return "";  
         }
+
         public async Task<List<string>> UploadAllVideosInFolderAsync()
         {
             var uploadResults = new List<string>();
@@ -165,11 +233,11 @@ namespace WebSearchLink.Service
                 {
                     if (infoUpload?.MeetingUu?.Topic != null && !infoUpload.Condition)
                     {
-                        var result = await UploadVideoAsync(file, infoUpload.MeetingUu.Topic + " Ngày: " + infoUpload.MeetingUu.StartTime, $"Upload file {fileName}");
+                        var result = await UploadVideoWithFallbackAsync(file, infoUpload.MeetingUu.Topic + " Ngày: " + infoUpload.MeetingUu.StartTime, $"Upload file {fileName}");
                         if (!string.IsNullOrEmpty(result))
                         {
                             infoUpload.Condition = true;
-                            infoUpload.Url = result; 
+                            infoUpload.Url = result;
                             uploadResults.Add($"{fileName}: {result}");
                             File.Delete(file);
                         }
@@ -187,5 +255,18 @@ namespace WebSearchLink.Service
             await _context.SaveChangesAsync();
             return uploadResults;
         }
+        private bool IsQuotaError(Exception ex)
+        {
+            if (ex is Google.GoogleApiException apiEx)
+            {
+                return apiEx.Error?.Errors?.Any(e =>
+                    e.Reason == "quotaExceeded" ||
+                    e.Reason == "userRateLimitExceeded" ||
+                    e.Reason == "dailyLimitExceeded") == true;
+            }
+
+            return false;
+        }
+
     }
 }
