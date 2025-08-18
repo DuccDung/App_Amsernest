@@ -1,0 +1,128 @@
+    @media (max-width: 700px) {
+        p {
+            font-size: 1.2rem;
+        }
+
+        .home-main-p {
+            font-size: 1.5rem;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            line-height: 2rem;
+        }
+
+        .home-main-h2 {
+            font-size: 3rem;
+            margin-top: 6rem;
+            margin-bottom: 3rem;
+            font-weight: 700;
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        .home-main-h2 {
+            font-size: 2rem;
+            margin-top: 6rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        .home-area-course-item span {
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stanford-btn {
+            font-size: 1rem;
+        }
+
+        .zoom-container {
+            position: relative;
+            height: 21rem;
+        }
+
+        .home-area-course-item-text h2 {
+            margin: 5px 0 0;
+            font-weight: bold;
+            font-size: 14px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+        }
+
+        .blog-container-card {
+            height: 280px;
+            background-color: white;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 5px auto;
+            text-align: left;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .title {
+            font-size: 11px;
+            font-weight: bold;
+            color: #000;
+            line-height: 1.4;
+        }
+
+        .home-main-h2 {
+            font-size: 2rem;
+            margin-top: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        .home-area-academics-item span {
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .edu-card h5 {
+            margin-top: 15px;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .edu-card p {
+            margin: 5px 0;
+            font-size: 1.2rem;
+        }
+
+        .edu-card a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.2rem;
+        }
+
+        .home-main-h2 {
+            font-size: 1.8rem 18px;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        .event-title {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .home-main-h2-fsrt {
+            margin-top: 2.5rem;
+        }
+
+        .home-main-p {
+            font-size: 1.5rem;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+            line-height: 2rem;
+            margin-top: 10px;
+        }
+    }

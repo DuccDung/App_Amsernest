@@ -4,6 +4,7 @@ using OfficeOpenXml;
 using System.Threading.Tasks;
 using WebSearchLink.Models;
 using WebSearchLink.Models.ModeBase;
+using WebSearchLink.Models.ScheduleModels;
 using WebSearchLink.Service;
 
 namespace WebSearchLink.Controllers
@@ -301,6 +302,62 @@ namespace WebSearchLink.Controllers
             await _dbContext.SaveChangesAsync();
             return Json(new { success = true });
         }
+
+        public async Task<IActionResult> SetingWebsite()
+        {
+            await Task.CompletedTask;
+            return View();
+        }
+        public IActionResult PostNews(string title, string summary,int type ,string content, IFormFile file)
+        {
+            if (string.IsNullOrEmpty(title) || string.IsNullOrEmpty(content))
+            {
+                return Json(new { success = false, message = "Tiêu đề và nội dung không được để trống!" });
+            }
+
+            var post = new Posts
+            {
+                Title = title,
+                Summary = summary,
+                Content = content,
+                Type = type,
+                Condition = true,
+            };
+
+            if (file != null && file.Length > 0)
+            {
+                var uploads = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/asset/img");
+
+                if (!Directory.Exists(uploads))
+                {
+                    Directory.CreateDirectory(uploads);
+                }
+
+                // Lấy tên file gốc
+                var fileName = Path.GetFileNameWithoutExtension(file.FileName);
+                var extension = Path.GetExtension(file.FileName);
+
+                // Đảm bảo không bị trùng bằng cách thêm GUID
+                var uniqueFileName = $"{fileName}_{Guid.NewGuid()}{extension}";
+                var filePath = Path.Combine(uploads, uniqueFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    file.CopyTo(stream);
+                }
+
+                // Lưu đường dẫn vào DB
+                post.Thumbnail = $"/asset/img/{uniqueFileName}";
+
+                _dbContext.Posts.Add(post);
+                _dbContext.SaveChanges();
+
+                return Json(new { success = true, message = "Đăng bài thành công!", file = uniqueFileName });
+            }
+
+            return Json(new { success = false, message = "Chưa chọn ảnh hoặc file rỗng!" });
+        }
+
         [HttpPost]
         public async Task<IActionResult> HandleDetailMeeting([FromBody] FixDetailMeetingReport req)
         {

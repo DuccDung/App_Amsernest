@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using WebSearchLink.Models.ScheduleModels;
@@ -29,7 +30,8 @@ public partial class DbAba3d6Amsernest1234567Context : DbContext
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UserTimeSlot> UserTimeSlots { get; set; }
-    public DbSet<WhenToMeet> WhenToMeets { get; set; }
+    public virtual DbSet<WhenToMeet> WhenToMeets { get; set; }
+    public virtual DbSet<Posts> Posts { get; set; }
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer(_configuration.GetConnectionString("InformationMeetingContext"));
 
@@ -49,6 +51,17 @@ public partial class DbAba3d6Amsernest1234567Context : DbContext
            .HasForeignKey(z => z.TeacherId)
            .OnDelete(DeleteBehavior.SetNull);
 
+        modelBuilder.Entity<Posts>(e =>
+        {
+            e.ToTable("Posts" , schema: "ams83485_sa");
+            e.HasKey(p => p.PostID);
+            e.Property(p => p.Title).IsRequired().HasMaxLength(255);
+            e.Property(p => p.Summary).HasMaxLength(500);
+            e.Property(p => p.Thumbnail).HasMaxLength(255);
+            e.Property(p => p.Content).HasMaxLength(500);
+            e.Property(p => p.Type).HasDefaultValue(0);
+            e.Property(p => p.Condition).HasDefaultValue(true);
+        });
         modelBuilder.Entity<GoogleToken>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK__GoogleTo__3214EC072880BADA");

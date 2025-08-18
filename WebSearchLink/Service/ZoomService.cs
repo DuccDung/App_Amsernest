@@ -327,7 +327,7 @@ namespace WebSearchLink.Service
             var count = 0;
             foreach (var item in listLink)
             {
-                if (!string.IsNullOrEmpty(item.DownloadUrl) && count < 5)
+                if (!string.IsNullOrEmpty(item.DownloadUrl) && count < 2)
                 {
                      var checkSave = await SaveRecordingToServerAsync(item.DownloadUrl, $"{item.FileId}.mp4");
 
@@ -598,6 +598,41 @@ namespace WebSearchLink.Service
 
             double sizeInMB = totalBytes / (1024.0 * 1024.0);
             return Math.Round(sizeInMB, 2);
+        }
+        public async Task EditVideoDownload()
+        {
+            if (!CheckVideos())
+            {
+                var recordingFile = await _context.RecordingFiles.Where(x => x.DownloadedAt != null && x.Condition == false).ToListAsync();
+                if (recordingFile.Count > 0)
+                {
+                    foreach (var file in recordingFile)
+                    {
+                        file.DownloadedAt = null;
+                    }
+                    await _context.SaveChangesAsync();
+                }
+            } // empty video in folder
+        }
+        public bool CheckVideos()
+        {
+            var videoPath = Path.Combine(_env.WebRootPath, "videos");
+            if (!Directory.Exists(videoPath))
+            {
+                return false;
+            }
+
+            var files = Directory.GetFiles(videoPath, "*.*", SearchOption.TopDirectoryOnly)
+                                 .Where(f => f.EndsWith(".mp4") || f.EndsWith(".avi") || f.EndsWith(".mov") || f.EndsWith(".mkv"))
+                                 .ToList();
+            if (files.Count == 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

@@ -5,137 +5,194 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Amsernest</title>
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="icon" href="/assets/img/channels4_profile.jpg" type="image/png">
 
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS & Font -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/base.css">
     <link rel="stylesheet" href="/assets/css/res_pc.css">
     <link rel="stylesheet" href="/assets/css/res_mobile_tablet.css">
     <link rel="stylesheet" href="/assets/css/res_mobile.css">
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+        </script>
+    <script src="script.js" defer></script>
+
+    <!-- Inline CSS -->
+    <style>
+        .containner-content-main {
+            font-family: 'Source Sans Pro', Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        .background-image--banner {
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .bg-video {
+            object-fit: cover;
+        }
+
+        .background-image--banner .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .background-image--banner .container {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
 </head>
 
-<style>
-    .containner-content-main {
-        font-family: Source Sans Pro, Helvetica Neue, Helvetica, Arial, sans-serif;
-    }
-</style>
-
 <body>
-    <section>
-        <div class="background-image--banner" style="background-image: url('/assets/img/Hero-3-2-2048x1362.avif');">
-            <div class="overlay"></div>
-            <div class="container d-flex justify-content-center align-items-center h-100">
-                <h1 class="home-text-center">Amsernest</h1>
+
+    <div class="header-sticky">
+        <header>
+            <div class=" d-flex justify-content-between align-items-center mx-5 mt-1 text-white z-index-1000">
+                <h1 class="home__header-name">Amsernest</h1>
+                <nav>
+                    <ul class="nav">
+                        <li class="nav-item d-flex align-items-center"><a class="nav-link text-white "
+                                href="index.html">Information for:</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-link text-white"
+                                href="index.html">Students</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-link text-white"
+                                href="index.html">Faculty &
+                                Staff</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-link text-white"
+                                href="index.html">Families</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-link text-white"
+                                href="about.html">Visitors</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-link text-white"
+                                href="contact.html">Alumni</a></li>
+                        <li class="nav-item d-flex align-items-center">
+                            <button class="search-btn">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <section id="site-navigation">
+            <div class="site-navigation-container container">
+                <nav>
+                    <ul class="nav home-nav">
+                        <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
+                                href="index.html">Academics</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
+                                href="index.html">Research</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
+                                href="index.html">Health Care</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
+                                href="about.html">Camput Life</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
+                                href="contact.html">Athletics</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
+                                href="contact.html">Admission</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
+                                href="contact.html">About</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
+                                href="contact.html">News</a></li>
+                        <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
+                                href="contact.html">Events</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        <!-- // Mobile Menu Toggle -->
+        <div class="navbar-tablet-mobile">
+            <div class="logo">Amsernest</div>
+            <div class="menu-icon" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i> Menu
             </div>
         </div>
-        <div class="header-sticky">
-            <header>
-                <div class=" d-flex justify-content-between align-items-center mx-5 mt-1 text-white z-index-1000">
-                    <h1 class="home__header-name">Amsernest</h1>
-                    <nav>
-                        <ul class="nav">
-                            <li class="nav-item d-flex align-items-center"><a class="nav-link text-white "
-                                    href="index.html">Information for:</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-link text-white"
-                                    href="index.html">Students</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-link text-white"
-                                    href="index.html">Faculty & Staff</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-link text-white"
-                                    href="index.html">Families</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-link text-white"
-                                    href="about.html">Visitors</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-link text-white"
-                                    href="contact.html">Alumni</a></li>
-                            <li class="nav-item d-flex align-items-center">
-                                <button class="search-btn">
-                                    <i class="fas fa-search"></i> Search
-                                </button>
-                            </li>
-
-                        </ul>
-                    </nav>
-                </div>
-            </header>
-            <section id="site-navigation">
-                <div class="site-navigation-container container">
-                    <nav>
-                        <ul class="nav home-nav">
-                            <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
-                                    href="index.html">Academics</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
-                                    href="index.html">Research</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
-                                    href="index.html">Health Care</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
-                                    href="about.html">Camput Life</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
-                                    href="contact.html">Athletics</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
-                                    href="contact.html">Admission</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
-                                    href="contact.html">About</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
-                                    href="contact.html">News</a></li>
-                            <li class="nav-item d-flex align-items-center"><a class="nav-header-link  nav-link "
-                                    href="contact.html">Events</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </section>
-            <!-- // Mobile Menu Toggle -->
-            <div class="navbar-tablet-mobile">
-                <div class="logo">Amsernest</div>
-                <div class="menu-icon" onclick="toggleMenu()">
-                    <i class="fas fa-bars"></i> Menu
-                </div>
+        <div class="menu-panel-tablet-mobile" id="menuPanel">
+            <div class="main-menu">
+                <a href="#">Academics</a>
+                <a href="#">Research</a>
+                <a href="#">Health Care</a>
+                <a href="#">Campus Life</a>
+                <a href="#">Athletics</a>
+                <a href="#">Admission</a>
+                <a href="#">About</a>
+                <a href="#">News</a>
+                <a href="#">Events</a>
             </div>
-            <div class="menu-panel-tablet-mobile" id="menuPanel">
-                <div class="main-menu">
-                    <a href="#">Academics</a>
-                    <a href="#">Research</a>
-                    <a href="#">Health Care</a>
-                    <a href="#">Campus Life</a>
-                    <a href="#">Athletics</a>
-                    <a href="#">Admission</a>
-                    <a href="#">About</a>
-                    <a href="#">News</a>
-                    <a href="#">Events</a>
-                </div>
-                <div class="info-menu">
-                    <span>Information for:</span>
-                    <a href="#">Students</a>
-                    <a href="#">Faculty & Staff</a>
-                    <a href="#">Families</a>
-                    <a href="#">Visitors</a>
-                    <a href="#">Alumni</a>
-                </div>
+            <div class="info-menu">
+                <span>Information for:</span>
+                <a href="#">Students</a>
+                <a href="#">Faculty & Staff</a>
+                <a href="#">Families</a>
+                <a href="#">Visitors</a>
+                <a href="#">Alumni</a>
             </div>
         </div>
-    </section>>
+    </div>
 
+
+    <style>
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            margin-top: 111px;
+            padding-top: 45.25%;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+            z-index: 1;
+        }
+    </style>
 
     <main id="home-main-height" class="containner-content-main">
         <div class="container">
+            <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto" class="bg-video">
+                    <source src="/assets/video/LaMode.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+            </div>
+
+        </div>
+        <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h2 class="text-center home-main-h2">A Mission Defined by Possibility</h2>
+                    <h2 class="text-center home-main-h2 home-main-h2-fsrt"> Welcome to Amsernest
+                    </h2>
                     <p class="home-main-p">
-                        At Stanford, our mission of discovery and learning is energized by a spirit of optimism and
-                        possibility that dates to our founding. Here you’ll find a place of intellectual expansiveness,
-                        wide-ranging perspectives, and freedom to explore new lines of thinking. Buzzing with ideas and
-                        innovation, approaching questions with openness and curiosity, pursuing excellence in all we do
-                        – this is Stanford.
+                        At Amsernest, we believe learning English is more than mastering a language — it’s about
+                        unlocking potential, expanding thinking, and building confidence for the future.
+
+                        With personalized programs, practical content, and passionate instructors, we empower learners
+                        to communicate, grow, and thrive.
                     </p>
-                    <a href="#" class="stanford-btn">More about Stanford</a>
+                    <a href="https://www.facebook.com/amsernest.tienganh" target="_blank" class="stanford-btn">More
+                        about Amsernest</a>
                 </div>
             </div>
         </div>
@@ -154,16 +211,47 @@
                 <div class="row">
                     <div class="col-12 col-md-6 home-item-course home-item-course-pop">
                         <div class="zoom-container">
-                            <img src="/assets/img/cous_1.jpg" alt="Hover Image">
+                            <img src="/assets/img/cous_ams_1.png" alt="Hover Image">
                             <div class="text-overlay">
-                                <p>Research is at the heart of Stanford’s mission. It’s how we discover new knowledge,
-                                    create new technologies, and address the world’s most pressing challenges.</p>
-                                <a href="#" class="home-area-course-item-link">Read more</a>
+                                <p>LEARN REAL JUNIOR/SENIOR – Tiếng Anh 4 kỹ năng cho học sinh cấp 2 tại Amsernest
+                                    Không chỉ là luyện thi – đây là hành trình giúp các bạn học sinh rèn nền tư duy,
+                                    luyện kỹ năng học
+                                    thuật, và phát triển bản lĩnh học tập.
+                                    💡 Tại lớp Learn REAL 9, học sinh sẽ:
+                                    ✅ Củng cố vững chắc kiến thức nền – luyện phản xạ ngôn ngữ trong ngữ cảnh học thuật
+                                    ✅ Luyện kỹ năng Nghe – Nói – Đọc – Viết theo định hướng chương trình mới
+                                    ✅ Phát triển khả năng tư duy – trình bày – viết lập luận bằng tiếng Anh
+                                    ✅ Học trong môi trường nghiêm túc, truyền cảm hứng – với tinh thần chủ động và niềm
+                                    vui là chính
+                                    📘 Phù hợp cho học sinh:
+                                    – Lớp 8, 9 đang chuẩn bị bước vào các kỳ thi lớn
+                                    – Cần nền tảng vững để học nâng cao, thi chuyên, song bằng hoặc IELTS sau này
+                                    – Muốn cải thiện kỹ năng giao tiếp học thuật và viết chuyên sâu
+                                    👩‍🏫 Người trực tiếp giảng dạy và thiết kế chương trình:
+                                    Cô Quỳnh Hoa – Thạc sĩ sư phạm Anh, ĐH Canberra (Úc), giáo viên trường THPT chuyên
+                                    Hà Nội – Amsterdam,
+                                    Giám đốc học thuật Amsernest.
+                                    Hành trình học tập vững vàng bắt đầu từ một người thầy tin vào tiềm năng của con.
+                                    </br>
+                                    <hr />
+                                <p class="link-amsernest-more">
+                                    𝘼𝙈𝙎𝙀𝙍𝙉𝙀𝙎𝙏 - TỔ ẤM AMSERS LÀM GIÁO DỤC
+                                    Được thành lập bởi nhóm giáo viên và cựu học sinh trường THPT Chuyên Hà Nội -
+                                    Amsterdam
+                                    📍 Số 7, Ngõ 83, Phố Trần Duy Hưng, P. Trung Hoà, Q. Cầu Giấy, Hà Nội
+                                    ☎️ 0862 620 227
+                                    📧 amsernest.edu@gmail.com
+                                    🌐 www.amsernest.edu.vn
+                                    #amsernest #tienganhungdung #REAL
+                                </p>
+                                </p>
+                                <a href="https://www.facebook.com/amsernest.tienganh/posts/pfbid0xCmwMXctmaqdMGfuTtFFkfKXTGYTvuB9YqBgc4kkpeMe7dpun9RQp97XczNCKWUbl?mibextid=wwXIfr&rdid=Jh9iBK8ahVzWjE6z#"
+                                    class="home-area-course-item-link">Read more</a>
                             </div>
                             <div class="overlay-bottom-up"></div>
                             <div class="home-area-course-item-text">
-                                <h4>IN THE SPOTLIGHT</h4>
-                                <h2>Why research matters</h2>
+                                <h4>Amsernest</h4>
+                                <h2>Tổ ấm Amsers làm giáo dục</h2>
                             </div>
                         </div>
                     </div>
@@ -221,11 +309,46 @@
                     </div>
                     <div class="col-12 col-md-6 home-item-course home-item-course-pop">
                         <div class="zoom-container">
-                            <img src="/assets/img/cous_6.jpg" alt="Hover Image">
+                            <img src="/assets/img/cous_ams_6.jpg" alt="Hover Image">
                             <div class="text-overlay">
-                                <p>Research is at the heart of Stanford’s mission. It’s how we discover new knowledge,
-                                    create new technologies, and address the world’s most pressing challenges.</p>
-                                <a href="#" class="home-area-course-item-link">Read more</a>
+                                <p>“Chưa bao giờ được chấm bài chi tiết và hiệu quả đến thế”, học sinh Thu Hiền.
+                                    Với học sinh, để viết ra một bài viết, đôi khi không chỉ cần tâm huyết mà còn là
+                                    nhiều sự “đấu tranh”
+                                    vượt lười, vượt khó. Hiểu được tâm lý đó, mỗi bài viết đến tay các thầy cô đều trở
+                                    thành một “vật mẫu”
+                                    đáng trân trọng - cũng vì thế mà các thầy cô sẽ cố gắng phân tích làm sao để học
+                                    sinh “get the most
+                                    out of it” - tận dụng tối ưu được bài chữa.
+                                    1. Nhận xét theo khung chấm điểm của bài thi chuẩn hoá
+                                    Với các học sinh có mục tiêu chuẩn bị cho bài thi (ví dụ: thi chuyên hoặc thi
+                                    IELTS), các thầy cô sẽ
+                                    nhận xét bài làm và phân tích theo khung chấm điểm chuẩn, để học sinh có định hướng
+                                    rõ ràng về việc
+                                    mình nên làm gì để tối ưu điểm cho từng tiêu chí.
+                                    2. Không chỉ sửa lỗi – mà giúp bạn hiểu vì sao sai
+                                    Mỗi lỗi sai đều được giải thích cặn kẽ, giúp bạn nắm rõ ngữ pháp, cách dùng từ và
+                                    tránh lặp lại trong
+                                    tương lai. Thầy cô sẽ đính kèm link diễn giải chi tiết trong trường hợp đó là một
+                                    kiến thức khó hoặc
+                                    học sinh hay sai, dễ nhầm lẫn.
+                                    3. Hướng dẫn cách dùng từ đúng & tự nhiên hơn
+                                    Bạn sẽ không chỉ biết từ nào sai, mà còn được gợi ý cách diễn đạt tự nhiên hơn,
+                                    chuẩn xác hơn theo
+                                    đúng văn phong học thuật hoặc giao tiếp.
+                                    4. “Improved version” - yours but better
+                                    Dựa theo chất lượng từng bài viết, các thầy cô sẽ đính kèm một bài sample để học
+                                    sinh tham khảo, đôi
+                                    khi là VIẾT LẠI chính bài của học sinh nhưng ở một phiên bản đã sửa lỗi và nâng cấp
+                                    từ vựng, ý tưởng
+                                    cũng như độ mạch lạc của dàn bài.
+                                    Nếu bạn cũng mong muốn bài chữa của mình được chấm chữa chi tiết đến như vậy, thì
+                                    liên hệ để đồng hành
+                                    cùng Amsernest nhé 😉
+                                    </br>
+                                    <hr />
+                                </p>
+                                <a href="https://www.facebook.com/amsernest.tienganh/posts/pfbid0xCmwMXctmaqdMGfuTtFFkfKXTGYTvuB9YqBgc4kkpeMe7dpun9RQp97XczNCKWUbl?mibextid=wwXIfr&rdid=Jh9iBK8ahVzWjE6z#"
+                                    class="home-area-course-item-link">Read more</a>
                             </div>
                             <div class="overlay-bottom-up"></div>
                             <div class="home-area-course-item-text">
@@ -363,17 +486,58 @@
                 </div>
             </div>
         </div>
+        <style>
+            .circle-button {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: none;
+                overflow: hidden;
+                padding: 0;
+                cursor: pointer;
+                background-color: transparent;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
 
+            .circle-button:hover {
+                box-shadow: 0 2px 4px rgba(7, 6, 6, 0.5);
+            }
+
+            .circle-button img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+            }
+
+            .content-link-foodter a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+            }
+        </style>
         <footer class="footer-section">
             <div class="container">
                 <!-- Top Social Row -->
-                <div class="d-flex justify-content-end mb-3 social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-apple"></i></a>
+                <div class="content-link-foodter d-flex justify-content-end mb-3 social-icons">
+                    <a href="https://Canvas.Amsernest.edu.vn" target="_blank" class="circle-button">
+                        <img src="/assets/img/btn_canvas.png" alt="Icon">
+                    </a>
+                    <a href="https://www.facebook.com/groups/1064457615795589" target="_blank" class="circle-button">
+                        <img src="/assets/img/gen_alpha.png" alt="Icon">
+                    </a>
+                    <a class="circle-button">
+                        <img src="/assets/img/nest_meet.png" alt="Icon">
+                    </a>
+                    <a href="https://www.facebook.com/amsernest.tienganh" target="_blank" class="circle-button">
+                        <img src="/assets/img/ic_fb.png" alt="Icon">
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC8KnVtKkN7l7GM2hM3F5nDg" target="_blank"
+                        class="circle-button">
+                        <img src="/assets/img/ic_yt.png" alt="Icon">
+                    </a>
+
                 </div>
 
                 <div class="row">
@@ -381,58 +545,38 @@
                     <div class="col-md-9">
                         <div class="row footer-links">
                             <div class="col-6 col-md-3">
-                                <div class="footer-title">Schools</div>
-                                <a href="#">Business</a>
-                                <a href="#">Education</a>
-                                <a href="#">Engineering</a>
-                                <a href="#">Humanities & Sciences</a>
-                                <a href="#">Law</a>
-                                <a href="#">Medicine</a>
-                                <a href="#">Sustainability</a>
+                                <div class="footer-title">About Amsernest</div>
+                                <p>Founded by teachers & alumni of Hanoi–Amsterdam High School</p>
+                                <p>Pioneering Personalized IELTS (IHP) & CLIL method</p>
                             </div>
                             <div class="col-6 col-md-3">
-                                <div class="footer-title">Academics</div>
-                                <a href="#">Undergraduate Majors</a>
-                                <a href="#">Graduate Programs</a>
-                                <div class="footer-title mt-3">Research</div>
-                                <a href="#">Research Centers A - Z</a>
-                                <a href="#">Libraries</a>
+                                <div class="footer-title">Contact</div>
+                                <p>📍 Số 7, Ngõ 83 Trần Duy Hưng, Cầu Giấy, Hà Nội</p>
+                                <p>📞 0862 620 227</p>
+                                <p>✉️ amsernest.edu@gmail.com</p>
+                                <p>🌐 www.amsernest.edu.vn</p>
                             </div>
                             <div class="col-6 col-md-3">
-                                <div class="footer-title">Health Care</div>
-                                <a href="#">Stanford Health Care</a>
-                                <a href="#">Stanford Children’s Health</a>
-                                <div class="footer-title mt-3">Online Learning</div>
-                                <a href="#">Stanford Online</a>
+                                <div class="footer-title">Programs</div>
+                                <a href="#">IELTS Personalized (IHP)</a>
+                                <a href="#">CLIL Integrated Learning</a>
+                                <a href="#">Business English (CBE)</a>
                             </div>
                             <div class="col-6 col-md-3">
-                                <div class="footer-title">About Stanford</div>
-                                <a href="#">Facts</a>
-                                <a href="#">History</a>
-                                <a href="#">Accreditation</a>
-                                <div class="footer-title mt-3">Resources</div>
-                                <a href="#">Campus Map</a>
-                                <a href="#">Community Engagement</a>
-                                <a href="#">Directory</a>
-                                <a href="#">Stanford Profiles</a>
-                                <div class="footer-title mt-3">Admission</div>
-                                <a href="#">Undergraduate</a>
-                                <a href="#">Graduate</a>
-                                <a href="#">Financial Aid</a>
+                                <div class="footer-title">Community</div>
+                                <a href="#">Learn in a friendly, quality-driven environment</a>
+                                <a href="#">Join our Gen Alpha Learning Group</a>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Right buttons -->
+                    <!-- Right buttons or CTA -->
                     <div class="col-md-3 footer-buttons">
-                        <button class="btn">Applying</button>
-                        <button class="btn">Visiting</button>
-                        <button class="btn">Giving</button>
-                        <button class="btn">Careers</button>
-                        <button class="btn">Faculty Positions</button>
-                        <button class="btn">Contact</button>
+                        <button class="btn">Enroll Now</button>
+                        <button class="btn">Contact Us</button>
+                        <button class="btn">Visit Us</button>
                     </div>
                 </div>
+
             </div>
 
             <!-- Bottom Bar -->
@@ -470,27 +614,11 @@
     const navHeight = header.offsetHeight;
     const homeMainHeight = homeMain.offsetHeight;
     console.log(navHeight);
-    window.addEventListener('scroll', () => {
-        if (window.scrollY >= homeMainHeight - navHeight - 10) {
-            header.classList.add('header-sticky-hover');
-            nav.classList.add('home-nav-hover');
-            nav.classList.add('shadow-bottom');
-            navItems.forEach(item => {
-                item.classList.add('home-nav-item-hover');
-            });
-        } else {
-            header.classList.remove('header-sticky-hover');
-            nav.classList.remove('home-nav-hover');
-            nav.classList.remove('shadow-bottom');
-            navItems.forEach(item => {
-                item.classList.remove('home-nav-item-hover');
-            });
-        }
-    });
     function toggleMenu() {
         const panel = document.getElementById("menuPanel");
         panel.style.display = (panel.style.display === "block") ? "none" : "block";
     }
 </script>
+<script src="/assets/js/res_mobile.js"></script>
 
 </html>

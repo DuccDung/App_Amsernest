@@ -1,0 +1,588 @@
+﻿@using WebSearchLink.Models.ScheduleModels
+@model List<List<Posts>>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amsernest</title>
+    <link rel="icon" href="~/asset_website/img/channels4_profile.jpg" type="image/png">
+
+    <!-- CSS & Font -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/asset_website/css/base.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/asset_website/css/res_pc.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/asset_website/css/res_mobile_tablet.css" asp-append-version="true">
+    <link rel="stylesheet" href="~/asset_website/css/res_mobile.css" asp-append-version="true">
+
+    <!-- JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="script.js" defer></script>
+
+    <!-- Inline CSS -->
+    <style>
+        .containner-content-main {
+            font-family: 'Source Sans Pro', Helvetica Neue, Helvetica, Arial, sans-serif;
+        }
+
+        .background-image--banner {
+            position: relative;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .bg-video {
+            object-fit: cover;
+        }
+
+        .background-image--banner .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .background-image--banner .container {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header-sticky">
+        <header>
+            <div class=" d-flex justify-content-between align-items-center mx-5 mt-1 text-white z-index-1000">
+                <h1 class="home__header-name">Amsernest</h1>
+                <nav>
+                    <ul class="nav">
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link text-white "
+                               href="index.html">Information for:</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link text-white"
+                               href="index.html">Students</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link text-white"
+                               href="index.html">
+                                Faculty &
+                                Staff
+                            </a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link text-white"
+                               href="index.html">Families</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link text-white"
+                               href="about.html">Visitors</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-link text-white"
+                               href="contact.html">Alumni</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <button class="search-btn">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <section id="site-navigation">
+            <div class="site-navigation-container container">
+                <nav>
+                    <ul class="nav home-nav">
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-header-link  nav-link "
+                               href="index.html">Academics</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-header-link  nav-link "
+                               href="index.html">Research</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-header-link  nav-link "
+                               href="index.html">Health Care</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-header-link  nav-link "
+                               href="about.html">Camput Life</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-header-link  nav-link "
+                               href="contact.html">Athletics</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-header-link  nav-link "
+                               href="contact.html">Admission</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-header-link  nav-link "
+                               href="contact.html">About</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-header-link  nav-link "
+                               href="contact.html">News</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-header-link  nav-link "
+                               href="contact.html">Events</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        <!-- // Mobile Menu Toggle -->
+        <div class="navbar-tablet-mobile">
+            <div class="logo">Amsernest</div>
+            <div class="menu-icon" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i> Menu
+            </div>
+        </div>
+        <div class="menu-panel-tablet-mobile" id="menuPanel">
+            <div class="main-menu">
+                <a href="#">Academics</a>
+                <a href="#">Research</a>
+                <a href="#">Health Care</a>
+                <a href="#">Campus Life</a>
+                <a href="#">Athletics</a>
+                <a href="#">Admission</a>
+                <a href="#">About</a>
+                <a href="#">News</a>
+                <a href="#">Events</a>
+            </div>
+            <div class="info-menu">
+                <span>Information for:</span>
+                <a href="#">Students</a>
+                <a href="#">Faculty & Staff</a>
+                <a href="#">Families</a>
+                <a href="#">Visitors</a>
+                <a href="#">Alumni</a>
+            </div>
+        </div>
+    </div>
+
+
+    <style>
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            margin-top: 111px;
+            padding-top: 45.25%;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: none;
+            z-index: 1;
+        }
+    </style>
+
+    <main id="home-main-height" class="containner-content-main">
+        <div class="container">
+            <div class="video-wrapper">
+                <video autoplay loop muted playsinline preload="auto" class="bg-video">
+                    <source src="~/asset_website/video/LaMode.mp4" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <h2 class="text-center home-main-h2 home-main-h2-fsrt">
+                        Welcome to Amsernest
+                    </h2>
+                    <p class="home-main-p">
+                        At Amsernest, we believe learning English is more than mastering a language — it’s about
+                        unlocking potential, expanding thinking, and building confidence for the future.
+
+                        With personalized programs, practical content, and passionate instructors, we empower learners
+                        to communicate, grow, and thrive.
+                    </p>
+                    <a href="https://www.facebook.com/amsernest.tienganh" target="_blank" class="stanford-btn">
+                        More
+                        about Amsernest
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="home-area-course text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 home-area-course-item text-center">
+                        <h1 class="home-main-h2">Campus News</h1>
+                        <span>Stories about people, research, and innovation across the Farm</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    @{
+                        int cnt = 0;
+                    }
+                    @foreach (var item in Model[0])
+                    {
+                        if (cnt == 0)
+                        {
+                            <div class="col-12 col-md-6 home-item-course home-item-course-pop">
+                                <div class="zoom-container">
+                                    <img src="@Url.Content(item.Thumbnail)" alt="Hover Image" />
+                                    <div class="text-overlay">
+                                        <a href="@item.Summary"
+                                           class="home-area-course-item-link">Read more</a>
+                                    </div>
+                                    <div class="overlay-bottom-up"></div>
+                                    <div class="home-area-course-item-text">
+                                        <h4>@item.Title</h4>
+                                        <h2>
+                                            @Html.Raw(item.Content)
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        if (cnt == 1)
+                        {
+                            <div class="col-6 col-md-3 home-item-course">
+                                <div class="blog-container">
+                                    <div class="blog-container-card">
+                                        <img src="@Url.Content(item.Thumbnail)" alt="Img">
+                                        <div class="card-content">
+                                            <div class="category">@item.Title</div>
+                                            <div class="title">
+                                                @Html.Raw(item.Content)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        if (cnt == 2)
+                        {
+                            <div class="col-6 col-md-3 home-item-course">
+                                <div class="blog-container">
+                                    <div class="blog-container-card">
+                                        <img src="@Url.Content(item.Thumbnail)" alt="Img">
+                                        <div class="card-content">
+                                            <div class="category">@item.Title</div>
+                                            <div class="title">
+                                                @Html.Raw(item.Content)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        cnt++;
+                    }
+                </div>
+                <!-- ========================== -->
+                <div class="row">
+                    @{
+                        int cnt1 = 0;
+                    }
+                    @foreach (var item in Model[0])
+                    {
+                        if (cnt1 == 3)
+                        {
+                            <div class="col-6 col-md-3 home-item-course">
+                                <div class="blog-container">
+                                    <div class="blog-container-card">
+                                        <img src="@Url.Content(item.Thumbnail)" alt="Img">
+                                        <div class="card-content">
+                                            <div class="category">@item.Title</div>
+                                            <div class="title">
+                                                @Html.Raw(item.Content)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        if (cnt1 == 4)
+                        {
+                            <div class="col-6 col-md-3 home-item-course">
+                                <div class="blog-container">
+                                    <div class="blog-container-card">
+                                        <img src="@Url.Content(item.Thumbnail)" alt="Img">
+                                        <div class="card-content">
+                                            <div class="category">@item.Title</div>
+                                            <div class="title">
+                                                @Html.Raw(item.Content)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        if (cnt1 == 5)
+                        {
+                            
+
+                            <div class="col-12 col-md-6 home-item-course home-item-course-pop">
+                                <div class="zoom-container">
+                                    <img src="@Url.Content(item.Thumbnail)" alt="Hover Image" />
+                                    <div class="text-overlay">
+                                        <a href="@item.Summary"
+                                           class="home-area-course-item-link">Read more</a>
+                                    </div>
+                                    <div class="overlay-bottom-up"></div>
+                                    <div class="home-area-course-item-text">
+                                        <h4>@item.Title</h4>
+                                        @Html.Raw(item.Content)
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        cnt1++;
+                    }
+                </div>
+                <a href="#" class="stanford-btn">More Campus News</a>
+            </div>
+
+            <div class="home-area-academics">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 home-area-academics-item text-center">
+                            <h2 class="text-center home-main-h2">Academics</h2>
+                            <span class="home-main-p">
+                                Preparing students to make meaningful contributions to society as engaged citizens and
+                                leaders in a complex world
+                            </span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="container my-5">
+                    <div class="row g-4">
+                        @{
+                            var cnt2 = 0;
+                        }
+                        @foreach (var item in Model[1])
+                        {
+                            if (cnt2 < 3)
+                            {
+                                <div class="col-md-4">
+                                    <div class="edu-card">
+                                        <img src="@Url.Content(item.Thumbnail)" alt="Undergraduate Education">
+                                        <h5>@item.Title</h5>
+                                        <p>
+                                            @Html.Raw(item.Content)
+                                        </p>
+                                        <a href="@item.Summary">@item.Title &gt;</a>
+                                    </div>
+                                </div>
+                            }
+                            cnt2++;
+                        }
+                    </div>
+                    <a href="#" class="stanford-btn">More Campus News</a>
+                </div>
+            </div>
+            <div class="home-area-event">
+                <div class="row">
+                    <div class="col-md-12 home-area-academics-item text-center">
+                        <h2 class="text-center home-main-h2">Upcoming Events</h2>
+                    </div>
+                </div>
+                <div class="container my-5">
+                    <div class="row g-4">
+                        @{
+                            var cnt3 = 0;
+                        }
+                        @foreach (var item in Model[2])
+                        {
+                            if (cnt3 < 4)
+                            {
+                                <div class="col-md-3">
+                                    <div class="event-card">
+                                        <div class="event-image">
+                                            <img src="@Url.Content(item.Thumbnail)" alt="Event Image">
+                                            <div class="event-date">
+                                                AUG<br><span>04</span>
+                                            </div>
+                                        </div>
+                                        <div class="event-content">
+                                            <div class="event-type">@item.Title</div>
+                                            <div class="event-title">
+                                                @Html.Raw(item.Content)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            cnt3++;
+                        }
+                    </div>
+                    <a href="#" class="stanford-btn">More News</a>
+                </div>
+            </div>
+        </div>
+        <style>
+            .circle-button {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: none;
+                overflow: hidden;
+                padding: 0;
+                cursor: pointer;
+                background-color: transparent;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            }
+
+                .circle-button:hover {
+                    box-shadow: 0 2px 4px rgba(7, 6, 6, 0.5);
+                }
+
+                .circle-button img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+
+            .content-link-foodter a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none;
+            }
+        </style>
+        <footer class="footer-section">
+            <div class="container">
+                <!-- Top Social Row -->
+                <div class="content-link-foodter d-flex justify-content-end mb-3 social-icons">
+                    <a href="https://Canvas.Amsernest.edu.vn" target="_blank" class="circle-button">
+                        <img src="~/asset_website/img/btn_canvas.png" alt="Icon">
+                    </a>
+                    <a href="https://www.facebook.com/groups/1064457615795589" target="_blank" class="circle-button">
+                        <img src="~/asset_website/img/gen_alpha.png" alt="Icon">
+                    </a>
+                    <a class="circle-button">
+                        <img src="~/asset_website/img/nest_meet.png" alt="Icon">
+                    </a>
+                    <a href="https://www.facebook.com/amsernest.tienganh" target="_blank" class="circle-button">
+                        <img src="~/asset_website/img/ic_fb.png" alt="Icon">
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC8KnVtKkN7l7GM2hM3F5nDg" target="_blank"
+                       class="circle-button">
+                        <img src="~/asset_website/img/ic_yt.png" alt="Icon">
+                    </a>
+
+                </div>
+
+                <div class="row">
+                    <!-- Left columns -->
+                    <div class="col-md-9">
+                        <div class="row footer-links">
+                            <div class="col-6 col-md-3">
+                                <div class="footer-title">About Amsernest</div>
+                                <p>Founded by teachers & alumni of Hanoi–Amsterdam High School</p>
+                                <p>Pioneering Personalized IELTS (IHP) & CLIL method</p>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="footer-title">Contact</div>
+                                <p>📍 Số 7, Ngõ 83 Trần Duy Hưng, Cầu Giấy, Hà Nội</p>
+                                <p>📞 0862 620 227</p>
+                                <p>✉️ amsernest.edu@gmail.com</p>
+                                <p>🌐 www.amsernest.edu.vn</p>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="footer-title">Programs</div>
+                                <a href="#">IELTS Personalized (IHP)</a>
+                                <a href="#">CLIL Integrated Learning</a>
+                                <a href="#">Business English (CBE)</a>
+                            </div>
+                            <div class="col-6 col-md-3">
+                                <div class="footer-title">Community</div>
+                                <a href="#">Learn in a friendly, quality-driven environment</a>
+                                <a href="#">Join our Gen Alpha Learning Group</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right buttons or CTA -->
+                    <div class="col-md-3 footer-buttons">
+                        <button class="btn">Enroll Now</button>
+                        <button class="btn">Contact Us</button>
+                        <button class="btn">Visit Us</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="footer-bottom text-center mt-4">
+                <div class="container">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                        <div class="mb-2 mb-md-0">
+                            <strong>Stanford</strong> Home &nbsp;&nbsp;
+                            <a href="#">Maps & Directions</a>
+                            <a href="#">Search Stanford</a>
+                            <a href="#">Emergency Info</a>
+                        </div>
+                        <div>
+                            <a href="#">Terms of Use</a>
+                            <a href="#">Privacy</a>
+                            <a href="#">Copyright</a>
+                            <a href="#">Trademarks</a>
+                            <a href="#">Non-Discrimination</a>
+                            <a href="#">Accessibility</a>
+                            <span class="d-block d-md-inline">
+                                &copy; Stanford University. Stanford, California
+                                94305.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+</body>
+<script>
+    const header = document.querySelector('.header-sticky');
+    const homeMain = document.getElementById('home-main-height');
+    const nav = document.getElementById('site-navigation');
+    const navItems = document.querySelectorAll('.nav-header-link');
+    const navHeight = header.offsetHeight;
+    const homeMainHeight = homeMain.offsetHeight;
+    console.log(navHeight);
+    function toggleMenu() {
+        const panel = document.getElementById("menuPanel");
+        panel.style.display = (panel.style.display === "block") ? "none" : "block";
+    }
+</script>
+<script src="~/asset_website/js/res_mobile.js"></script>
+
+</html>

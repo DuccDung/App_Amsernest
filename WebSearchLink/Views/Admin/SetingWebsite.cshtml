@@ -1,0 +1,36 @@
+﻿<form asp-controller="Admin" asp-action="PostNews" id="postForm" method="post" enctype="multipart/form-data" class="container mt-5">
+    <h2>
+        <i class="fa-solid fa-globe"></i> Create post new
+    </h2>
+
+    <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" id="title_post_new" name="title" class="form-control" placeholder="Enter post title" required />
+    </div>
+
+    <div class="mb-3">
+        <label for="summary" class="form-label">Summary</label>
+        <textarea id="summary_post_new" name="summary" class="form-control" rows="3" placeholder="Short description..."></textarea>
+    </div>
+    <div class="mb-3">
+        <label for="type" class="form-type mb-3">Type</label>
+        <select id="type_post_new" name="type" class="form-select">
+            <option value="1">News</option>
+            <option value="2">Blog</option>
+            <option value="3">Teacher</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea id="content_post_new" name="content"></textarea>
+    </div>
+
+    <div class="mb-3">
+        <label for="image" class="form-label">Thumbnail Image</label>
+        <input type="file" id="image_post_new" name="file" class="form-control" accept="image/*" />
+    </div>
+
+    <button type="button" id="btn_post_new" class="btn btn-primary">
+        <i class="fa-solid fa-paper-plane"></i> Publish
+    </button>
+</form>

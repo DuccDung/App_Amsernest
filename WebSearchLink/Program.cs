@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.Features;
+using Microsoft.EntityFrameworkCore;
 using WebSearchLink.Models;
 using WebSearchLink.Service;
 
@@ -19,7 +20,7 @@ builder.Services.AddDbContext<DbAba3d6Amsernest1234567Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("InformationMeetingContext")));
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<ZoomService>();
-builder.Services.AddHostedService<ScheduledUploadService>();
+//builder.Services.AddHostedService<ScheduledUploadService>();
 builder.WebHost.UseWebRoot("wwwroot");
 // client for YouTube API and Zoom API
 builder.Services.AddHttpClient("Zoom", c =>
@@ -35,7 +36,10 @@ builder.Services.AddHttpClient("YouTube", c =>
 {
     c.BaseAddress = new Uri("https://www.googleapis.com/");
 });
-
+builder.Services.Configure<FormOptions>(options =>
+{
+    options.MultipartBodyLengthLimit = 104857600; // 100 MB
+});
 builder.Services.AddScoped<IZoomService, ZoomService>();
 builder.Services.AddScoped<IYouTubeService, YouTubeUploadService>();
 var app = builder.Build();
@@ -57,6 +61,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=WhenToMeet}/{action=LoginWhenToMeet}/{id?}");
+    pattern: "{controller=Website}/{action=Index}/{id?}");
 
 app.Run();

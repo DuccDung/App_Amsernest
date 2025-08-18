@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using WebSearchLink.Service;
 
 namespace WebSearchLink.Models
@@ -35,6 +36,7 @@ namespace WebSearchLink.Models
                     }
                     else
                     {
+                        await zoomService.EditVideoDownload();
                         // 1. Download Zoom
                         await zoomService.GetNewRecordingsAsync();
                         var downloadResults = await zoomService.SaveNewRecordingsAsync();
@@ -70,7 +72,7 @@ namespace WebSearchLink.Models
             var videoPath = Path.Combine(_env.WebRootPath, "videos");
             if (!Directory.Exists(videoPath))
             {
-                return false; 
+                return false;
             }
 
             var files = Directory.GetFiles(videoPath, "*.*", SearchOption.TopDirectoryOnly)
@@ -85,8 +87,6 @@ namespace WebSearchLink.Models
                 return true;
             }
         }
-
-
        
     }
 

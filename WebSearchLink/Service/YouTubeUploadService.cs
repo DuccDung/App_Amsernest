@@ -84,22 +84,6 @@ namespace WebSearchLink.Service
                 Data = newToken
             };
         }
-        //public async Task<UserCredential> GetUserCredentialFromToken()
-        //{
-        //    var token = await GetAccessToken(); 
-
-        //    var flow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
-        //    {
-        //        ClientSecrets = new ClientSecrets
-        //        {
-        //            ClientId = _config["Google:ClientId"],
-        //            ClientSecret = _config["Google:ClientSecret"]
-        //        }
-        //    });
-
-        //    return new UserCredential(flow, "duccdung999@gmail.com", token);
-        //}
-
         public async Task<UserCredential> GetUserCredential(GoogleToken account)
         { 
             var token = await GetAccessToken(account);
@@ -115,52 +99,6 @@ namespace WebSearchLink.Service
 
             return new UserCredential(flow, account.UserId, token);
         }
-        //public async Task<string> UploadVideoAsync(string filePath, string title, string description)
-        //{
-        //    try
-        //    {
-        //        var credential = await GetUserCredentialFromToken(); 
-
-        //        var youtubeService = new YouTubeService(new BaseClientService.Initializer
-        //        {
-        //            HttpClientInitializer = credential,
-        //            ApplicationName = "Server-ToolDow&UpVideo"
-        //        });
-
-        //        var video = new Video
-        //        {
-        //            Snippet = new VideoSnippet
-        //            {
-        //                Title = title,
-        //                Description = description,
-        //                Tags = new[] { "asp.net", "upload", "youtube" },
-        //                CategoryId = "22" // 22 = People & Blogs
-        //            },
-        //            Status = new VideoStatus { PrivacyStatus = "unlisted" }
-        //        };
-
-        //        using var stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-        //        var uploadRequest = youtubeService.Videos.Insert(video, "snippet,status", stream, "video/*");
-        //        uploadRequest.ChunkSize = ResumableUpload.MinimumChunkSize;
-        //        var progress = await uploadRequest.UploadAsync();
-
-        //        if (progress.Status == Google.Apis.Upload.UploadStatus.Completed)
-        //        {
-        //            var videoId = uploadRequest.ResponseBody.Id;
-        //            return $"https://www.youtube.com/watch?v={videoId}";
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Upload thất bại: " + progress.Exception?.Message);
-        //            return "";
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine($"Lỗi khi upload video: {ex.Message}");
-        //        return "";
-        //    }
-        //}
         public async Task<string> UploadVideoWithFallbackAsync(string filePath, string title, string description)
         {
             var accounts = await _context.GoogleTokens.ToListAsync();

@@ -12,6 +12,7 @@ namespace WebSearchLink.Service
         Task<ResponseModel<ZoomUsers>> GetUserAsync();
         Task<ResponseModel<ZoomMeetingReportResponses>> GetReportingFilesToWeekAsync();
         Task DownloadReportFormZoomToDbAsync();
+        Task EditVideoDownload();
         //  Task<ResponseModel<ZoomMeetingReportResponses>> GetReportingFilesChooseAsync(DateTime from, DateTime to);
     }
 }
