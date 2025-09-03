@@ -32,6 +32,14 @@ namespace WebSearchLink.Controllers
             model?[2].AddRange(post_3);
             return View(model);
         }
+        public IActionResult AboutTeacher()
+        {
 
+            return View();
+        }
+        public IActionResult AcademicsNews()
+        {
+            return View();
+        }
     }
 }

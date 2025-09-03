@@ -77,7 +77,10 @@
             font-size: 1.5rem;
             margin-bottom: 1rem;
         }
-
+        .edu-card{
+            text-align: start;
+            padding: 10px;
+        }
         .edu-card h5 {
             margin-top: 15px;
             font-weight: 700;
@@ -86,7 +89,7 @@
 
         .edu-card p {
             margin: 5px 0;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
         }
 
         .edu-card a {
@@ -120,5 +123,9 @@
             font-weight: 300;
             line-height: 2rem;
             margin-top: 10px;
+        }
+
+        .main-edu-blog{
+          margin-top: 5rem;
         }
     }

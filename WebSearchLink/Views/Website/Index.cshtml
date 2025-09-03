@@ -255,12 +255,8 @@
                         if (cnt == 0)
                         {
                             <div class="col-12 col-md-6 home-item-course home-item-course-pop">
-                                <div class="zoom-container">
+                                <div onclick="window.location.href='@item.Summary'" class="zoom-container">
                                     <img src="@Url.Content(item.Thumbnail)" alt="Hover Image" />
-                                    <div class="text-overlay">
-                                        <a href="@item.Summary"
-                                           class="home-area-course-item-link">Read more</a>
-                                    </div>
                                     <div class="overlay-bottom-up"></div>
                                     <div class="home-area-course-item-text">
                                         <h4>@item.Title</h4>
@@ -274,7 +270,7 @@
                         if (cnt == 1)
                         {
                             <div class="col-6 col-md-3 home-item-course">
-                                <div class="blog-container">
+                                <div onclick="window.location.href='@item.Summary'" class="blog-container">
                                     <div class="blog-container-card">
                                         <img src="@Url.Content(item.Thumbnail)" alt="Img">
                                         <div class="card-content">
@@ -290,7 +286,7 @@
                         if (cnt == 2)
                         {
                             <div class="col-6 col-md-3 home-item-course">
-                                <div class="blog-container">
+                                <div onclick="window.location.href='@item.Summary'" class="blog-container">
                                     <div class="blog-container-card">
                                         <img src="@Url.Content(item.Thumbnail)" alt="Img">
                                         <div class="card-content">
@@ -316,7 +312,7 @@
                         if (cnt1 == 3)
                         {
                             <div class="col-6 col-md-3 home-item-course">
-                                <div class="blog-container">
+                                <div onclick="window.location.href='@item.Summary'" class="blog-container">
                                     <div class="blog-container-card">
                                         <img src="@Url.Content(item.Thumbnail)" alt="Img">
                                         <div class="card-content">
@@ -331,7 +327,7 @@
                         }
                         if (cnt1 == 4)
                         {
-                            <div class="col-6 col-md-3 home-item-course">
+                            <div onclick="window.location.href='@item.Summary'" class="col-6 col-md-3 home-item-course">
                                 <div class="blog-container">
                                     <div class="blog-container-card">
                                         <img src="@Url.Content(item.Thumbnail)" alt="Img">
@@ -350,12 +346,8 @@
                             
 
                             <div class="col-12 col-md-6 home-item-course home-item-course-pop">
-                                <div class="zoom-container">
+                                <div onclick="window.location.href='@item.Summary'" class="zoom-container">
                                     <img src="@Url.Content(item.Thumbnail)" alt="Hover Image" />
-                                    <div class="text-overlay">
-                                        <a href="@item.Summary"
-                                           class="home-area-course-item-link">Read more</a>
-                                    </div>
                                     <div class="overlay-bottom-up"></div>
                                     <div class="home-area-course-item-text">
                                         <h4>@item.Title</h4>
@@ -412,37 +404,34 @@
             <div class="home-area-event">
                 <div class="row">
                     <div class="col-md-12 home-area-academics-item text-center">
-                        <h2 class="text-center home-main-h2">Upcoming Events</h2>
+                        <h2 class="text-center home-main-h2">Teacher information</h2>
                     </div>
                 </div>
                 <div class="container my-5">
-                    <div class="row g-4">
-                        @{
-                            var cnt3 = 0;
-                        }
-                        @foreach (var item in Model[2])
-                        {
-                            if (cnt3 < 4)
-                            {
-                                <div class="col-md-3">
-                                    <div class="event-card">
-                                        <div class="event-image">
-                                            <img src="@Url.Content(item.Thumbnail)" alt="Event Image">
-                                            <div class="event-date">
-                                                AUG<br><span>04</span>
-                                            </div>
-                                        </div>
-                                        <div class="event-content">
-                                            <div class="event-type">@item.Title</div>
-                                            <div class="event-title">
-                                                @Html.Raw(item.Content)
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="container my-5">
+                        <div class="row g-4">
+                            <!-- Card 1 -->
+                            <div class="col-md-3">
+                                <div class="event-card">
+                                    <img src="~/asset_website/img/teacher/coach_ngochuong.jpg" alt="Event Image">
                                 </div>
-                            }
-                            cnt3++;
-                        }
+                            </div>
+                            <div class="col-md-3">
+                                <div class="event-card">
+                                    <img src="~/asset_website/img/teacher/coach_ankhanh.jpg" alt="Event Image">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="event-card">
+                                    <img src="~/asset_website/img/teacher/coach_hagiang.jpg" alt="Event Image">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="event-card">
+                                    <img src="~/asset_website/img/teacher/coach_havu.jpg" alt="Event Image">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <a href="#" class="stanford-btn">More News</a>
                 </div>

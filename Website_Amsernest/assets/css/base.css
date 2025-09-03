@@ -508,3 +508,6 @@
             margin-bottom: 20px;
         }
     }
+    .event-card img{
+        height: 100%;
+    }
