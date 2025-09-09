@@ -197,7 +197,6 @@
             z-index: 1;
         }
 
-      
     </style>
 
     <main id="home-main-height " class="containner-content-main ">
@@ -206,22 +205,26 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 home-area-academics-item text-center main-edu-blog">
-                            <h2 class="text-center home-main-h2">Academics</h2>
+                            <h2 class="text-center home-main-h2">Campus news</h2>
                             <span class="home-main-p">
-                                Preparing students to make meaningful contributions to society as engaged citizens and
-                                leaders in a complex world
+                                Stories about people, research, and innovation across the Farm
                             </span>
                         </div>
                     </div>
 
                 </div>
+
+                <style>
+                   
+                </style>
+
                 <div class="container my-5">
                     <div class="row g-4">
-                        @foreach(var item in Model)
+                        @foreach (var item in Model)
                         {
                             <div class="col-md-4">
                                 <div class="edu-card">
-                                    <img src="@Url.Content(item.Thumbnail)" alt="Undergraduate Education">
+                                    <img class="img-campus-pc" src="@Url.Content(item.Thumbnail)" alt="Undergraduate Education">
                                     <h5>@item.Title</h5>
                                     <p>
                                         @Html.Raw(item.Content)

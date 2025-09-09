@@ -39,7 +39,18 @@ namespace WebSearchLink.Controllers
         }
         public IActionResult AcademicsNews()
         {
-            return View();
+            List<Posts> posts = _context.Posts.Where(p => p.Condition == true && p.Type == 2).ToList();
+            return View(posts);
+        }
+        public IActionResult CampusNews()
+        {
+            List<Posts> posts = _context.Posts.Where(p => p.Condition == true && p.Type == 1).ToList();
+            return View(posts);
+        }
+        public IActionResult TecherNews()
+        {
+            List<Posts> posts = _context.Posts.Where(p => p.Condition == true && p.Type == 3).ToList();
+            return View(posts);
         }
     }
 }

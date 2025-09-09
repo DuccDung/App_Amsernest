@@ -10,6 +10,12 @@
         margin-inline-start: 1rem;
         color: #000000d1;
     }
+    .img-campus-pc {
+        height: 25rem;
+    }
+    .under_line {
+        display: none;
+    }
 }
 
 @media (min-width: 1000px) and (max-width: 1200px) {
@@ -40,5 +46,11 @@
         gap: 8px;
         cursor: pointer;
         transition: background-color 0.3s ease;
+    }
+    .img-campus-pc {
+        height: 25rem;
+    }
+    .under_line {
+        display: none;
     }
 }

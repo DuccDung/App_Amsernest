@@ -112,39 +112,22 @@
                     <ul class="nav home-nav">
                         <li class="nav-item d-flex align-items-center">
                             <a class="nav-header-link  nav-link "
-                               href="index.html">Academics</a>
+                               asp-action="AcademicsNews" asp-controller="Website">Academics</a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <a class="nav-header-link  nav-link "
-                               href="index.html">Research</a>
+                               asp-controller="Website" asp-action="CampusNews">Courses</a>
+                        </li>
+                        <li class="nav-item d-flex align-items-center">
+                            <a class="nav-header-link  nav-link ">Teacher</a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <a class="nav-header-link  nav-link "
-                               href="index.html">Health Care</a>
+                               href="https://www.facebook.com/amsernest.tienganh">About</a>
                         </li>
                         <li class="nav-item d-flex align-items-center">
                             <a class="nav-header-link  nav-link "
-                               href="about.html">Camput Life</a>
-                        </li>
-                        <li class="nav-item d-flex align-items-center">
-                            <a class="nav-header-link  nav-link "
-                               href="contact.html">Athletics</a>
-                        </li>
-                        <li class="nav-item d-flex align-items-center">
-                            <a class="nav-header-link  nav-link "
-                               href="contact.html">Admission</a>
-                        </li>
-                        <li class="nav-item d-flex align-items-center">
-                            <a class="nav-header-link  nav-link "
-                               href="contact.html">About</a>
-                        </li>
-                        <li class="nav-item d-flex align-items-center">
-                            <a class="nav-header-link  nav-link "
-                               href="contact.html">News</a>
-                        </li>
-                        <li class="nav-item d-flex align-items-center">
-                            <a class="nav-header-link  nav-link "
-                               href="contact.html">Events</a>
+                               asp-controller="Website" asp-action="AcademicsNews">News</a>
                         </li>
                     </ul>
                 </nav>
@@ -158,25 +141,29 @@
             </div>
         </div>
         <div class="menu-panel-tablet-mobile" id="menuPanel">
-            <div class="main-menu">
-                <a href="#">Academics</a>
-                <a href="#">Research</a>
-                <a href="#">Health Care</a>
-                <a href="#">Campus Life</a>
-                <a href="#">Athletics</a>
-                <a href="#">Admission</a>
-                <a href="#">About</a>
-                <a href="#">News</a>
-                <a href="#">Events</a>
-            </div>
-            <div class="info-menu">
-                <span>Information for:</span>
-                <a href="#">Students</a>
-                <a href="#">Faculty & Staff</a>
-                <a href="#">Families</a>
-                <a href="#">Visitors</a>
-                <a href="#">Alumni</a>
-            </div>
+            <nav>
+                <ul class="nav home-nav">
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-header-link  nav-link " 
+                           asp-action="AcademicsNews" asp-controller="Website" style="font-weight=500;">Academics</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-header-link  nav-link "
+                           asp-controller="Website" asp-action="CampusNews" style="font-weight=500;">Courses</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-header-link  nav-link " style="font-weight=500;">Teacher</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-header-link  nav-link "
+                           href="https://www.facebook.com/amsernest.tienganh" style="font-weight=500;">About</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-header-link  nav-link "
+                           asp-controller="Website" asp-action="AcademicsNews" style="font-weight=500;">News</a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </div>
 
@@ -239,12 +226,50 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 home-area-course-item text-center">
-                        <h1 class="home-main-h2">Campus News</h1>
+                        <h1 class="home-main-h2">COURSES</h1>
                         <span>Stories about people, research, and innovation across the Farm</span>
                     </div>
                 </div>
             </div>
+            <style>
+                .home-card-content {
+                    min-width: 0;
+                }
 
+                .category.home_title-text h4 {
+                    display: block;
+                    /* an toàn cho div */
+                    /* giới hạn theo khung cha */
+                    white-space: nowrap;
+                    /* chỉ 1 dòng */
+                    overflow: hidden;
+                    /* ẩn phần tràn */
+                    text-overflow: ellipsis;
+                    /* hiện …; bỏ dòng này nếu không muốn "…" */
+                }
+
+                .home-card-content,
+                .category {
+                    min-width: 0;
+                }
+
+
+                .home_title .home_title-text p {
+                    margin: 0;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: block;
+                    width: 100%;
+                }
+
+                .home_title.is-open .home_title-text p {
+                    white-space: normal;
+                    overflow: visible;
+                    text-overflow: clip;
+                    overflow-wrap: anywhere;
+                }
+            </style>
             <div class="container">
                 <div class="row">
                     @{
@@ -259,10 +284,20 @@
                                     <img src="@Url.Content(item.Thumbnail)" alt="Hover Image" />
                                     <div class="overlay-bottom-up"></div>
                                     <div class="home-area-course-item-text">
-                                        <h4>@item.Title</h4>
-                                        <h2>
-                                            @Html.Raw(item.Content)
-                                        </h2>
+                                        @* fix *@
+                                        <div class="home-card-content">
+                                            <div class="category home_title-text"><h4>@item.Title</h4></div>
+
+                                            <div class="home_title" role="button" tabindex="0" aria-expanded="false">
+                                                <h2 class="home_title-text">
+                                                    <span class="line-ellipsis">
+                                                        @Html.Raw(item.Content)
+                                                    </span>
+                                                </h2>
+                                            </div>
+                                        </div>
+                                        @*fix*@
+
                                     </div>
                                 </div>
                             </div>
@@ -274,10 +309,23 @@
                                     <div class="blog-container-card">
                                         <img src="@Url.Content(item.Thumbnail)" alt="Img">
                                         <div class="card-content">
-                                            <div class="category">@item.Title</div>
-                                            <div class="title">
-                                                @Html.Raw(item.Content)
+
+                                            @* <div class="category">@item.Title</div> *@
+                                            <div class="ams-header">
+                                                <h4 class="category ams-title">@item.Title</h4>
                                             </div>
+                                            @* <div class="title"> *@
+                                            @*     @Html.Raw(item.Content) *@
+                                            @* </div> *@
+
+                                            @* fix *@
+                                            <div class="ams-expander" role="button" tabindex="0" aria-expanded="false" aria-label="Xem thêm nội dung">
+                                                <div class="ams-expander__content title">
+                                                    @Html.Raw(item.Content)
+                                                </div>
+                                            </div>
+                                            @* fix *@
+
                                         </div>
                                     </div>
                                 </div>
@@ -290,10 +338,21 @@
                                     <div class="blog-container-card">
                                         <img src="@Url.Content(item.Thumbnail)" alt="Img">
                                         <div class="card-content">
-                                            <div class="category">@item.Title</div>
-                                            <div class="title">
-                                                @Html.Raw(item.Content)
+                                            @* <div class="category">@item.Title</div> *@
+                                            <div class="ams-header">
+                                                <h4 class="category ams-title">@item.Title</h4>
                                             </div>
+                                            @* <div class="title"> *@
+                                            @*     @Html.Raw(item.Content) *@
+                                            @* </div> *@
+
+                                            @* fix *@
+                                            <div class="ams-expander" role="button" tabindex="0" aria-expanded="false" aria-label="Xem thêm nội dung">
+                                                <div class="ams-expander__content title">
+                                                    @Html.Raw(item.Content)
+                                                </div>
+                                            </div>
+                                            @* fix *@
                                         </div>
                                     </div>
                                 </div>
@@ -316,10 +375,21 @@
                                     <div class="blog-container-card">
                                         <img src="@Url.Content(item.Thumbnail)" alt="Img">
                                         <div class="card-content">
-                                            <div class="category">@item.Title</div>
-                                            <div class="title">
-                                                @Html.Raw(item.Content)
+                                            @* <div class="category">@item.Title</div> *@
+                                            <div class="ams-header">
+                                                <h4 class="category ams-title">@item.Title</h4>
                                             </div>
+                                            @* <div class="title"> *@
+                                            @*     @Html.Raw(item.Content) *@
+                                            @* </div> *@
+
+                                            @* fix *@
+                                            <div class="ams-expander" role="button" tabindex="0" aria-expanded="false" aria-label="Xem thêm nội dung">
+                                                <div class="ams-expander__content title">
+                                                    @Html.Raw(item.Content)
+                                                </div>
+                                            </div>
+                                            @* fix *@
                                         </div>
                                     </div>
                                 </div>
@@ -332,10 +402,21 @@
                                     <div class="blog-container-card">
                                         <img src="@Url.Content(item.Thumbnail)" alt="Img">
                                         <div class="card-content">
-                                            <div class="category">@item.Title</div>
-                                            <div class="title">
-                                                @Html.Raw(item.Content)
+                                            @* <div class="category">@item.Title</div> *@
+                                            <div class="ams-header">
+                                                <h4 class="category ams-title">@item.Title</h4>
                                             </div>
+                                            @* <div class="title"> *@
+                                            @*     @Html.Raw(item.Content) *@
+                                            @* </div> *@
+
+                                            @* fix *@
+                                            <div class="ams-expander" role="button" tabindex="0" aria-expanded="false" aria-label="Xem thêm nội dung">
+                                                <div class="ams-expander__content title">
+                                                    @Html.Raw(item.Content)
+                                                </div>
+                                            </div>
+                                            @* fix *@
                                         </div>
                                     </div>
                                 </div>
@@ -343,15 +424,26 @@
                         }
                         if (cnt1 == 5)
                         {
-                            
+
 
                             <div class="col-12 col-md-6 home-item-course home-item-course-pop">
                                 <div onclick="window.location.href='@item.Summary'" class="zoom-container">
                                     <img src="@Url.Content(item.Thumbnail)" alt="Hover Image" />
                                     <div class="overlay-bottom-up"></div>
                                     <div class="home-area-course-item-text">
-                                        <h4>@item.Title</h4>
-                                        @Html.Raw(item.Content)
+                                        <div class="home-card-content">
+                                            <div class="category home_title-text">
+                                                <h4>@item.Title</h4>
+                                            </div>
+
+                                            <div class="home_title" role="button" tabindex="0" aria-expanded="false">
+                                                <div class="home_title-text">
+                                                    @Html.Raw(item.Content)
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        @*fix*@
                                     </div>
                                 </div>
                             </div>
@@ -359,7 +451,7 @@
                         cnt1++;
                     }
                 </div>
-                <a href="#" class="stanford-btn">More Campus News</a>
+                <a asp-controller="Website" asp-action="CampusNews" class="stanford-btn">More Courses News</a>
             </div>
 
             <div class="home-area-academics">
@@ -398,7 +490,7 @@
                             cnt2++;
                         }
                     </div>
-                    <a href="#" class="stanford-btn">More Campus News</a>
+                    <a asp-controller="Website" asp-action="AcademicsNews" class="stanford-btn">More Academics News</a>
                 </div>
             </div>
             <div class="home-area-event">
@@ -433,126 +525,132 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="stanford-btn">More News</a>
                 </div>
             </div>
         </div>
+
         <style>
+            /* Nếu đã dùng Bootstrap, .container của bạn sẽ có sẵn.
+               Nếu không, đoạn dưới chỉ là fallback nhẹ: */
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 16px;
+            }
+
+            /* Footer */
+            .footer-short {
+                background: #052e6c;
+                /* xanh đậm */
+                color: #e2e8f0;
+                /* text nhạt */
+                font-size: 14px;
+            }
+
+            /* Thanh 1 hàng */
+            .footer-bar {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                /* contact trái, social phải */
+                gap: 12px;
+                padding: 10px 0;
+            }
+
+            /* Contact */
+            .footer-contact {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+                .footer-contact .contact-link {
+                    color: #e2e8f0;
+                    text-decoration: none;
+                }
+
+                    .footer-contact .contact-link:hover {
+                        text-decoration: underline;
+                    }
+
+                .footer-contact .dot {
+                    opacity: .6;
+                }
+
+            /* Social icons dạng nút tròn */
+            .social-icons {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
             .circle-button {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                border: none;
+                width: 36px;
+                height: 36px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 999px;
+                background: rgba(255, 255, 255, 0.06);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                text-decoration: none;
+                transition: transform .15s ease, background .2s ease, border-color .2s ease;
                 overflow: hidden;
-                padding: 0;
-                cursor: pointer;
-                background-color: transparent;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                /* tránh ảnh vuông tràn ra ngoài */
             }
 
                 .circle-button:hover {
-                    box-shadow: 0 2px 4px rgba(7, 6, 6, 0.5);
+                    transform: translateY(-1px);
+                    background: rgba(255, 255, 255, 0.12);
+                    border-color: rgba(255, 255, 255, 0.22);
                 }
 
                 .circle-button img {
-                    width: 100%;
-                    height: 100%;
-                    object-fit: cover;
-                    display: block;
+                    width: 20px;
+                    height: 20px;
+                    object-fit: contain;
+                    /* Nếu icon gốc màu đen, bật dòng dưới để đảo màu cho nền tối */
+                    /* filter: brightness(0) invert(1); */
                 }
 
-            .content-link-foodter a {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                text-decoration: none;
-            }
+            /* Responsive: màn hình nhỏ thì stack 2 dòng */
+           
         </style>
-        <footer class="footer-section">
-            <div class="container">
-                <!-- Top Social Row -->
-                <div class="content-link-foodter d-flex justify-content-end mb-3 social-icons">
-                    <a href="https://Canvas.Amsernest.edu.vn" target="_blank" class="circle-button">
-                        <img src="~/asset_website/img/btn_canvas.png" alt="Icon">
-                    </a>
-                    <a href="https://www.facebook.com/groups/1064457615795589" target="_blank" class="circle-button">
-                        <img src="~/asset_website/img/gen_alpha.png" alt="Icon">
-                    </a>
-                    <a class="circle-button">
-                        <img src="~/asset_website/img/nest_meet.png" alt="Icon">
-                    </a>
-                    <a href="https://www.facebook.com/amsernest.tienganh" target="_blank" class="circle-button">
-                        <img src="~/asset_website/img/ic_fb.png" alt="Icon">
-                    </a>
-                    <a href="https://www.youtube.com/channel/UC8KnVtKkN7l7GM2hM3F5nDg" target="_blank"
-                       class="circle-button">
-                        <img src="~/asset_website/img/ic_yt.png" alt="Icon">
-                    </a>
 
+        <!-- Footer 1 hàng ngắn -->
+        <footer class="footer-short">
+            <div class="container footer-bar">
+                <!-- Contact (trái) -->
+                <div class="footer-contact">
+                    <a href="tel:+84900000000" class="contact-link">Hotline: +84 900 000 000</a>
+                    <span class="dot">•</span>
+                    <a href="mailto:hello@amsernest.edu.vn" class="contact-link">amsernest.edu.vn</a>
+                    <span class="dot">•</span>
+                    <span>Mon–Fri 8:00–17:30</span>
                 </div>
 
-                <div class="row">
-                    <!-- Left columns -->
-                    <div class="col-md-9">
-                        <div class="row footer-links">
-                            <div class="col-6 col-md-3">
-                                <div class="footer-title">About Amsernest</div>
-                                <p>Founded by teachers & alumni of Hanoi–Amsterdam High School</p>
-                                <p>Pioneering Personalized IELTS (IHP) & CLIL method</p>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="footer-title">Contact</div>
-                                <p>📍 Số 7, Ngõ 83 Trần Duy Hưng, Cầu Giấy, Hà Nội</p>
-                                <p>📞 0862 620 227</p>
-                                <p>✉️ amsernest.edu@gmail.com</p>
-                                <p>🌐 www.amsernest.edu.vn</p>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="footer-title">Programs</div>
-                                <a href="#">IELTS Personalized (IHP)</a>
-                                <a href="#">CLIL Integrated Learning</a>
-                                <a href="#">Business English (CBE)</a>
-                            </div>
-                            <div class="col-6 col-md-3">
-                                <div class="footer-title">Community</div>
-                                <a href="#">Learn in a friendly, quality-driven environment</a>
-                                <a href="#">Join our Gen Alpha Learning Group</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Right buttons or CTA -->
-                    <div class="col-md-3 footer-buttons">
-                        <button class="btn">Enroll Now</button>
-                        <button class="btn">Contact Us</button>
-                        <button class="btn">Visit Us</button>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Bottom Bar -->
-            <div class="footer-bottom text-center mt-4">
-                <div class="container">
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                        <div class="mb-2 mb-md-0">
-                            <strong>Stanford</strong> Home &nbsp;&nbsp;
-                            <a href="#">Maps & Directions</a>
-                            <a href="#">Search Stanford</a>
-                            <a href="#">Emergency Info</a>
-                        </div>
-                        <div>
-                            <a href="#">Terms of Use</a>
-                            <a href="#">Privacy</a>
-                            <a href="#">Copyright</a>
-                            <a href="#">Trademarks</a>
-                            <a href="#">Non-Discrimination</a>
-                            <a href="#">Accessibility</a>
-                            <span class="d-block d-md-inline">
-                                &copy; Stanford University. Stanford, California
-                                94305.
-                            </span>
-                        </div>
-                    </div>
+                <!-- Social icons (phải) -->
+                <div class="social-icons">
+                    <a href="https://Canvas.Amsernest.edu.vn" target="_blank" rel="noopener" class="circle-button"
+                       aria-label="Canvas LMS">
+                        <img src="~/asset_website/img/btn_canvas.png" alt="Canvas" />
+                    </a>
+                    <a href="https://www.facebook.com/groups/1064457615795589" target="_blank" rel="noopener"
+                       class="circle-button" aria-label="Facebook Group">
+                        <img src="~/asset_website/img/gen_alpha.png" alt="Facebook Group" />
+                    </a>
+                    <a href="#" class="circle-button" aria-label="Nest Meet">
+                        <img src="~/asset_website/img/nest_meet.png" alt="Nest Meet" />
+                    </a>
+                    <a href="https://www.facebook.com/amsernest.tienganh" target="_blank" rel="noopener"
+                       class="circle-button" aria-label="Facebook Page">
+                        <img src="~/asset_website/img/ic_fb.png" alt="Facebook" />
+                    </a>
+                    <a href="https://www.youtube.com/channel/UC8KnVtKkN7l7GM2hM3F5nDg" target="_blank" rel="noopener"
+                       class="circle-button" aria-label="YouTube">
+                        <img src="~/asset_website/img/ic_yt.png" alt="YouTube" />
+                    </a>
                 </div>
             </div>
         </footer>
@@ -572,6 +670,7 @@
         panel.style.display = (panel.style.display === "block") ? "none" : "block";
     }
 </script>
+
 <script src="~/asset_website/js/res_mobile.js"></script>
 
 </html>

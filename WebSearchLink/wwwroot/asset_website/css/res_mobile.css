@@ -1,4 +1,4 @@
-    @media (max-width: 700px) {
+﻿    @media (max-width: 700px) {
         p {
             font-size: 1.2rem;
         }
@@ -136,4 +136,48 @@
             padding: 10px;
             text-align: start;
         }
+        .under_line{
+            display:block;
+        }
+        .home-card-content {
+            min-width: 0;
+        }
+
+        .category.home_title-text h4 {
+            display: block;
+            /* an toàn cho div */
+            max-width: 266px;
+            /* giới hạn theo khung cha */
+            white-space: nowrap;
+            /* chỉ 1 dòng */
+            overflow: hidden;
+            /* ẩn phần tràn */
+            text-overflow: ellipsis;
+            /* hiện …; bỏ dòng này nếu không muốn "…" */
+        }
+
+        .home-card-content,
+        .category {
+            min-width: 0;
+        }
+
+        .home_title {
+            width: 300px;
+        }
+
+            .home_title .home_title-text p {
+                margin: 0;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                display: block;
+                width: 100%;
+            }
+
+            .home_title.is-open .home_title-text p {
+                white-space: normal;
+                overflow: visible;
+                text-overflow: clip;
+                overflow-wrap: anywhere;
+            }
     }

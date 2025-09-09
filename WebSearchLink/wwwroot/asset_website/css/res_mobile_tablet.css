@@ -1,4 +1,4 @@
-    .navbar-tablet-mobile {
+﻿    .navbar-tablet-mobile {
         display: none;
         background-color: #003fb3;
         color: white;
@@ -101,6 +101,19 @@
 
 
         }
-
-
+        .home_title {
+            width: 300px;
+        }
+        .category.home_title-text h4 {
+            display: block;
+            /* an toàn cho div */
+            max-width: 290px;
+            /* giới hạn theo khung cha */
+            white-space: nowrap;
+            /* chỉ 1 dòng */
+            overflow: hidden;
+            /* ẩn phần tràn */
+            text-overflow: ellipsis;
+            /* hiện …; bỏ dòng này nếu không muốn "…" */
+        }
     }
